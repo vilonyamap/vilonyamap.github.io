@@ -31,3 +31,15 @@ footer {
     text-align: center;
     padding: 10px 0;
 }
+#map-container {
+    margin-top: 20px;
+    overflow: hidden; /* Harita dışına taşan kısımları kesmek için */
+    display: flex;
+    justify-content: center; /* İçeriği yatay olarak ortala */
+}
+
+#map-container img {
+    max-width: 100%;
+    max-height: 80vh; /* Ekran yüksekliğinin en fazla %80'i kadar yükseklik */
+    cursor: grab; /* Haritayı sürüklemek için el simgesi */
+}
