@@ -13,10 +13,4 @@ harita3D.style.opacity = 0;
 haritaPanoramik.style.opacity = 0;
 
 // 2D haritayı varsayılan olarak göster
-harita2D.style.display = 'block';
-
-// Harita katmanları arasında geçiş yapma fonksiyonları
-function goster2D() {
-    harita2D.style.display = 'block';
-    harita3D.style.display = 'none';
-    haritaPanoramik.style
+harita

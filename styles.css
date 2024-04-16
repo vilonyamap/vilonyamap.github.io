@@ -4,11 +4,41 @@ body {
     padding: 0;
 }
 
+#ust-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#logo {
+    width: 150px;
+    height: auto;
+}
+
+#logo-gorseli {
+    width: 100%;
+    height: auto;
+}
+
+#metin {
+    font-size: 16px;
+    color: #fff;
+}
+
 #harita-bolumu {
     position: relative;
-    width: 800px; /* Haritanın genişliğini ayarlayın */
-    height: 600px; /* Haritanın yüksekliğini ayarlayın */
-    margin: 0 auto; /* Haritayı yatay olarak ortalayın */
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    top: 50px;
+    border: 1px solid #ccc;
 }
 
 .harita-katmani {
@@ -17,11 +47,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0; /* Başlangıçta tüm katmanları gizleyin */
+    opacity: 0;
 }
 
 #harita-2d {
-    z-index: 1; /* 2D katmanını en üste yerleştirin */
+    z-index: 1;
 }
 
 #harita-3d {
@@ -32,30 +62,18 @@ body {
     z-index: 3;
 }
 
-#logo {
+#alt-bar {
     position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
-#logo-gorseli {
-    width: 100px; /* Logonuzun genişliğini ayarlayın */
-    height: 100px; /* Logonuzun yüksekliğini ayarlayın */
-}
-
-#metin {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-}
-
-#metin-icerigi {
-    font-size: 14px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #333;
+    text-align: center;
+    padding: 10px;
 }
 
 #kredi {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    text-align: right;
+    font-size: 14px;
+    color: #fff;
 }
