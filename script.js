@@ -28,34 +28,38 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Fare tekerleği ile yakınlaştırma
+    // Fare tekerleği ile yakınlaştırma ve uzaklaştırma
     mapContainer.addEventListener('wheel', function(e) {
         e.preventDefault(); // Sayfanın kaydırılmasını engelle
+
+        var delta = e.deltaY || e.detail || e.wheelDelta;
+
         var zoomSpeed = 0.1; // Yakınlaştırma hızı
-        var zoom = e.deltaY * zoomSpeed;
-        var currentWidth = mapImage.clientWidth;
-        var currentHeight = mapImage.clientHeight;
-        var newWidth = currentWidth + zoom;
-        var newHeight = currentHeight + zoom;
+        var zoomFactor = 1 + (delta > 0 ? -zoomSpeed : zoomSpeed); // Yakınlaştırma faktörü
         
+        var oldWidth = mapImage.clientWidth;
+        var oldHeight = mapImage.clientHeight;
+        var newWidth = oldWidth * zoomFactor;
+        var newHeight = oldHeight * zoomFactor;
+
         // Min ve max boyutları belirle
         var minZoom = 100;
         var maxZoom = 1000;
         newWidth = Math.min(Math.max(newWidth, minZoom), maxZoom);
         newHeight = Math.min(Math.max(newHeight, minZoom), maxZoom);
-        
+
         // Yakınlaştırma işlemi için merkez noktayı hesapla
         var mouseX = e.clientX - mapImage.offsetLeft;
         var mouseY = e.clientY - mapImage.offsetTop;
-        var widthDiff = newWidth - currentWidth;
-        var heightDiff = newHeight - currentHeight;
-        var zoomX = (mouseX / currentWidth) * widthDiff;
-        var zoomY = (mouseY / currentHeight) * heightDiff;
+        var widthDiff = newWidth - oldWidth;
+        var heightDiff = newHeight - oldHeight;
+        var scrollLeft = mapContainer.scrollLeft + mouseX * (widthDiff / oldWidth);
+        var scrollTop = mapContainer.scrollTop + mouseY * (heightDiff / oldHeight);
 
         // Boyutları ve pozisyonu güncelle
         mapImage.style.width = newWidth + 'px';
         mapImage.style.height = newHeight + 'px';
-        mapContainer.scrollLeft += zoomX;
-        mapContainer.scrollTop += zoomY;
+        mapContainer.scrollLeft = scrollLeft;
+        mapContainer.scrollTop = scrollTop;
     });
 });
