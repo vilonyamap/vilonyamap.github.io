@@ -1,79 +1,46 @@
 body {
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    overflow: hidden; /* Ekran dışında olan kısımları gizle */
 }
 
-#ust-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
+header {
     background-color: #333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-#logo {
-    width: 150px;
-    height: auto;
-}
-
-#logo-gorseli {
-    width: 100%;
-    height: auto;
-}
-
-#metin {
-    font-size: 16px;
-    color: #fff;
-}
-
-#harita-bolumu {
-    position: relative;
-    width: 800px;
-    height: 500px;
-    margin: 0 auto;
-    top: 50px;
-    border: 1px solid #ccc;
-}
-
-.harita-katmani {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-}
-
-#harita-2d {
-    z-index: 1;
-}
-
-#harita-3d {
-    z-index: 2;
-}
-
-#harita-panoramik {
-    z-index: 3;
-}
-
-#alt-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background-color: #333;
+    color: white;
+    padding: 20px;
     text-align: center;
-    padding: 10px;
 }
 
-#kredi {
-    font-size: 14px;
-    color: #fff;
+header img {
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+}
+
+main {
+    text-align: center;
+}
+
+#map-container {
+    margin-top: 20px;
+    overflow: hidden; /* Harita dışına taşan kısımları kesmek için */
+    width: 100%;
+    height: 80vh; /* Ekran yüksekliğinin %80'ini kaplar */
+    display: flex;
+    justify-content: center; /* İçeriği yatay olarak ortala */
+    align-items: center; /* İçeriği dikey olarak ortala */
+}
+
+#map-image {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: grab; /* Haritayı sürüklemek için el simgesi */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
 }

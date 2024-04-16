@@ -1,31 +1,24 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Haritası</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Minecraft Harita</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="ust-bar">
-        <div id="logo">
-            <img src="logo.png" alt="Logonuz" id="logo-gorseli">
+    <header>
+        <img src="logo.png" alt="Logo">
+        <h1>Minecraft Haritası</h1>
+    </header>
+    <main>
+        <div id="map-container">
+            <img id="map-image" src="minecraft_map2d.png" alt="Minecraft Haritası">
         </div>
-        <div id="metin">
-            <p id="metin-icerigi">Bu Minecraft haritası web sitesi ... tarafından oluşturulmuştur.</p>
-        </div>
-    </div>
-
-    <div id="harita-bolumu">
-        <div id="harita-2d" class="harita-katmani"></div>
-        <div id="harita-3d" class="harita-katmani"></div>
-        <div id="harita-panoramik" class="harita-katmani"></div>
-    </div>
-
-    <div id="alt-bar">
-        <p>&copy; 2024 <a href="#">Yaratıcı Adı</a></p>
-    </div>
-
+    </main>
+    <footer>
+        <p>Credit</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
