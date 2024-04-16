@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     var mapContainer = document.getElementById("map-container");
-    var mapImage = mapContainer.querySelector("img");
+    var mapImage = document.getElementById("map-image");
 
     // Harita görüntüsünü sürüklemek için etkinleştirme
     var isDragging = false;
@@ -30,15 +30,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Fare tekerleği ile yakınlaştırma
     mapImage.addEventListener('wheel', function(e) {
-        e.preventDefault();
-        var zoomSpeed = 0.1;
+        e.preventDefault(); // Sayfanın kaydırılmasını engelle
+        var zoomSpeed = 0.1; // Yakınlaştırma hızı
         var zoom = e.deltaY * zoomSpeed;
         var currentWidth = mapImage.clientWidth;
         var currentHeight = mapImage.clientHeight;
         var newWidth = currentWidth + zoom;
         var newHeight = currentHeight + zoom;
+        // Boyutları güncelle
         mapImage.style.width = newWidth + 'px';
         mapImage.style.height = newHeight + 'px';
+        // Kaydırma oranını güncelle
         var deltaX = (e.clientX - mapImage.offsetLeft) * (newWidth / currentWidth) - e.clientX;
         var deltaY = (e.clientY - mapImage.offsetTop) * (newHeight / currentHeight) - e.clientY;
         mapContainer.scrollLeft += deltaX;
