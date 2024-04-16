@@ -4,27 +4,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Harita görüntüsünü sürüklemek için etkinleştirme
     var isDragging = false;
-    var lastX = 0;
-    var lastY = 0;
+    var startX = 0;
+    var startY = 0;
 
     mapImage.addEventListener('mousedown', function(e) {
         isDragging = true;
-        lastX = e.clientX;
-        lastY = e.clientY;
+        startX = e.clientX - mapContainer.offsetLeft;
+        startY = e.clientY - mapContainer.offsetTop;
     });
 
-    mapImage.addEventListener('mouseup', function() {
+    document.addEventListener('mouseup', function() {
         isDragging = false;
     });
 
-    mapImage.addEventListener('mousemove', function(e) {
+    document.addEventListener('mousemove', function(e) {
         if (isDragging) {
-            var deltaX = e.clientX - lastX;
-            var deltaY = e.clientY - lastY;
+            e.preventDefault();
+            var newX = e.clientX - mapContainer.offsetLeft;
+            var newY = e.clientY - mapContainer.offsetTop;
+            var deltaX = newX - startX;
+            var deltaY = newY - startY;
             mapContainer.scrollLeft -= deltaX;
             mapContainer.scrollTop -= deltaY;
-            lastX = e.clientX;
-            lastY = e.clientY;
+            startX = newX;
+            startY = newY;
         }
     });
 
@@ -35,6 +38,32 @@ document.addEventListener("DOMContentLoaded", function() {
         var delta = e.deltaY || e.detail || e.wheelDelta;
 
         var zoomSpeed = 0.1; // Yakınlaştırma hızı
-        var zoomFactor = 1 + (delta > 0 ? -zoomSpeed : zoomSpeed); // Yakınlaştırma faktörü
-        
-        var oldWidth = mapI
+
+        // Yakınlaştırma faktörünü belirle
+        var zoomFactor = 1 + (delta > 0 ? -zoomSpeed : zoomSpeed); 
+
+        // Görüntünün mevcut genişliği ve yüksekliği
+        var oldWidth = mapImage.clientWidth;
+        var oldHeight = mapImage.clientHeight;
+
+        // Yeni genişlik ve yükseklik hesapla
+        var newWidth = oldWidth * zoomFactor;
+        var newHeight = oldHeight * zoomFactor;
+
+        // Fare imleci konumuna göre yakınlaştırma işlemi
+        var mouseX = e.clientX - mapImage.offsetLeft;
+        var mouseY = e.clientY - mapImage.offsetTop;
+
+        // Yakınlaştırma işlemi için merkez noktayı hesapla
+        var widthDiff = newWidth - oldWidth;
+        var heightDiff = newHeight - oldHeight;
+        var scrollLeft = mapContainer.scrollLeft + mouseX * (widthDiff / oldWidth);
+        var scrollTop = mapContainer.scrollTop + mouseY * (heightDiff / oldHeight);
+
+        // Boyutları ve pozisyonu güncelle
+        mapImage.style.width = newWidth + 'px';
+        mapImage.style.height = newHeight + 'px';
+        mapContainer.scrollLeft = scrollLeft;
+        mapContainer.scrollTop = scrollTop;
+    });
+});
