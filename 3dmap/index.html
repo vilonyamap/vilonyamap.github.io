@@ -9,7 +9,12 @@
 <body>
 
 <div id="container">
-  <img id="draggable" src="3DMapExport8k.png">
+  <img id="draggable" src="3DMapExport8k.png" usemap="#image-map">
+  <map name="image-map">
+    <!-- Örnek bir alan -->
+    <area shape="rect" coords="0,0,50,50" alt="Köşe" title="Köşeye tıklandı">
+    <!-- Diğer alanları buraya ekleyin -->
+  </map>
 </div>
 
 <script src="script.js"></script>

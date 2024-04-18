@@ -3,46 +3,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const mapFrame = document.getElementById("map-frame");
     const toggleButton = document.getElementById("toggleButton");
     const streetViewButton = document.getElementById("streetViewButton");
-    const iconContainer = document.getElementById("icon-container");
 
     let isDragging = false;
     let startX = 0;
     let startY = 0;
+    let mapCenterX = 0;
+    let mapCenterY = 0;
+    let zoomLevel = 1;
 
-    // Iconları ekleyen işlev
-    function addIcons() {
-        // Iconları harita resminin içine ekleyin
-        const icon1 = document.createElement("div");
-        icon1.classList.add("map-icon");
-        icon1.style.left = "100px";
-        icon1.style.top = "200px";
-        iconContainer.appendChild(icon1);
-
-        const icon2 = document.createElement("div");
-        icon2.classList.add("map-icon");
-        icon2.style.left = "1150px";
-        icon2.style.top = "410px";
-        iconContainer.appendChild(icon2);
-
-        // Iconlara tıklama işlevi
-        icon1.addEventListener("click", function() {
-            alert("İkon 1'e tıklandı!");
-        });
-
-        icon2.addEventListener("click", function() {
-            alert("İkon 2'ye tıklandı!");
-        });
-    }
-
-    // Iconları gizleyen işlev
-    function hideIcons() {
-        iconContainer.style.display = "none";
-    }
-
-    // Iconları gösteren işlev
-    function showIcons() {
-        iconContainer.style.display = "block";
-    }
+    // Iconların referans noktalarını depolayacak bir dizi
+    const iconReferences = [
+        { x: 0.3, y: 0.4 }, // İkon 1 için referans noktası
+        { x: 0.7, y: 0.6 }  // İkon 2 için referans noktası
+    ];
 
     // 3D harita geçiş butonuna tıklama olayını ekle
     toggleButton.addEventListener("click", function() {
@@ -51,20 +24,28 @@ document.addEventListener("DOMContentLoaded", function() {
             mapFrame.src = "3dmap/index.html";
             toggleButton.textContent = "2D";
             streetViewButton.style.display = "inline-block"; // Street View butonunu göster
-            showIcons(); // Iconları göster
+            addIcons(); // İkonları ekle
         } else {
             // 3D harita görünümünden 2D harita görünümüne geç
             mapFrame.src = "unmined.index.html";
             toggleButton.textContent = "3D";
             streetViewButton.style.display = "none"; // Street View butonunu gizle
-            hideIcons(); // Iconları gizle
+            clearIcons(); // İkonları temizle
         }
         resetMapSettings(); // Yakınlaştırma, uzaklaştırma ve kaydırma ayarlarını sıfırla
+    });
+
+    // Street view butonuna tıklama olayını ekle
+    streetViewButton.addEventListener("click", function() {
+        // Burada street view işlemleri yapılabilir
     });
 
     function resetMapSettings() {
         mapContainer.scrollLeft = 0;
         mapContainer.scrollTop = 0;
+        mapCenterX = 0;
+        mapCenterY = 0;
+        zoomLevel = 1;
     }
 
     mapContainer.addEventListener("mousedown", function(event) {
@@ -104,30 +85,55 @@ document.addEventListener("DOMContentLoaded", function() {
         // Yakınlaştırma faktörünü belirle
         const zoomFactor = 1 + (delta > 0 ? -zoomSpeed : zoomSpeed);
 
-        // Görüntünün mevcut genişliği ve yüksekliği
-        const oldWidth = mapContainer.clientWidth;
-        const oldHeight = mapContainer.clientHeight;
+        // Zoom seviyesini güncelle
+        zoomLevel *= zoomFactor;
 
-        // Yakınlaştırma işlemi için merkez noktayı hesapla
-        const mouseX = event.offsetX || event.layerX;
-        const mouseY = event.offsetY || event.layerY;
+        // Haritanın merkez koordinatlarını güncelle
+        mapCenterX += (event.offsetX - mapContainer.clientWidth / 2) * (1 - zoomFactor);
+        mapCenterY += (event.offsetY - mapContainer.clientHeight / 2) * (1 - zoomFactor);
 
-        // Yakınlaştırma işlemi
-        mapContainer.style.width = oldWidth * zoomFactor + "px";
-        mapContainer.style.height = oldHeight * zoomFactor + "px";
+        // Haritayı zoomla
+        mapContainer.style.transform = `scale(${zoomLevel})`;
+        mapContainer.scrollLeft = mapCenterX;
+        mapContainer.scrollTop = mapCenterY;
 
-        // Yeni konumları hesapla
-        const newScrollLeft = mapContainer.scrollLeft + mouseX * (oldWidth * zoomFactor / oldWidth) - mouseX;
-        const newScrollTop = mapContainer.scrollTop + mouseY * (oldHeight * zoomFactor / oldHeight) - mouseY;
-
-        // Yeni konumlara kaydır
-        mapContainer.scrollLeft = newScrollLeft;
-        mapContainer.scrollTop = newScrollTop;
+        // İkonların pozisyonunu güncelle
+        updateIconPositions();
     });
 
-    // Iconları ekle
-    addIcons();
+    // Iconları ekleme fonksiyonu
+    function addIcons() {
+        iconReferences.forEach(function(ref, index) {
+            const icon = document.createElement("div");
+            icon.classList.add("map-icon");
+            icon.style.left = ref.x * mapContainer.clientWidth + "px";
+            icon.style.top = ref.y * mapContainer.clientHeight + "px";
+            icon.style.backgroundImage = "url('icon.png')";
+            mapContainer.appendChild(icon);
 
-    // Başlangıçta iconları gizle
-    hideIcons();
+            // İkonlara tıklama işlevi
+            icon.addEventListener("click", function() {
+                alert("İkon " + (index + 1) + "'e tıklandı!");
+            });
+        });
+    }
+
+    // İkonların pozisyonunu güncelleme fonksiyonu
+    function updateIconPositions() {
+        iconReferences.forEach(function(ref, index) {
+            const icon = document.querySelector(".map-icon:nth-child(" + (index + 1) + ")");
+            if (icon) {
+                icon.style.left = (ref.x * mapContainer.clientWidth - mapContainer.scrollLeft) + "px";
+                icon.style.top = (ref.y * mapContainer.clientHeight - mapContainer.scrollTop) + "px";
+            }
+        });
+    }
+
+    // İkonları temizleme fonksiyonu
+    function clearIcons() {
+        const icons = document.querySelectorAll(".map-icon");
+        icons.forEach(function(icon) {
+            icon.parentNode.removeChild(icon);
+        });
+    }
 });
