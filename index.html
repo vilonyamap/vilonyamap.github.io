@@ -13,13 +13,14 @@
     </header>
     <main>
         <div id="map-container">
-            <img id="map-image" src="minecraft_map2d.png" alt="Minecraft Haritası">
+            <iframe id="map-frame" src="unmined.index.html" frameborder="0"></iframe>
         </div>
     </main>
     <footer>
         <p>Credit</p>
     </footer>
     <button id="toggleButton" onclick="toggleMapView()">3D</button> <!-- 3D harita geçiş butonu -->
+    <button id="streetViewButton" style="display: none;">Street View</button> <!-- Street View butonu, başlangıçta gizli -->
     <script src="script.js"></script>
 </body>
 </html>
