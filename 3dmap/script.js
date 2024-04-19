@@ -10,26 +10,20 @@ let prevMouseY;
 let clickCount = 0;
 let clickCoordinates = [];
 
-// Canvas elementini oluştur
 const canvas = document.createElement("canvas");
 const context = canvas.getContext("2d");
 container.appendChild(canvas);
 
-// PNG resminin yüklenmesini bekle
 const image = new Image();
 image.onload = function() {
-    // Resmin orijinal boyutlarını al
     const originalWidth = image.width;
     const originalHeight = image.height;
 
-    // Canvas boyutlarını resmin orijinal boyutlarına göre ayarla
     canvas.width = originalWidth;
     canvas.height = originalHeight;
 
-    // PNG resmini Canvas üzerine çiz
     context.drawImage(image, 0, 0);
 
-    // Kareleri çiz
     for (let x = 0; x < originalWidth; x += 10) {
         for (let y = 0; y < originalHeight; y += 10) {
             context.strokeStyle = "rgba(255, 0, 0, 0.5)";
@@ -104,17 +98,13 @@ document.addEventListener("mouseup", () => {
     isDragging = false;
 });
 
-// Tıklama olayını dinle
 container.addEventListener("click", function(event) {
-    // Tıklama noktasının koordinatlarını al
     const rect = container.getBoundingClientRect();
     const x = Math.round((event.clientX - rect.left) / scale - offsetX);
     const y = Math.round((event.clientY - rect.top) / scale - offsetY);
 
-    // Koordinatları konsola yaz
     console.log(`Tıklama Koordinatları: (${x}, ${y})`);
 
-    // Profil belirleme işlevi için
     if (clickCount < 4) {
         clickCoordinates.push({ x, y });
         clickCount++;
@@ -125,8 +115,7 @@ container.addEventListener("click", function(event) {
         }
     }
 
-    // Profil bilgilerini içeren nesne
-    const profiles = {
+     const profiles = {
         "shanexx": [ 
              { startX: 1953, endX: 2009, startY: 24, endY: 60 },
             { startX: 1613, endX: 1669, startY: -214, endY: -180 },
@@ -147,7 +136,7 @@ container.addEventListener("click", function(event) {
             { startX: 1471, endX: 1526, startY: -102, endY: -66 }
         ],
         "MightyManlyMe": [
-           { startX: 1952, endX: 2007, startY: 105, endY: 136 },
+            { startX: 1952, endX: 2007, startY: 105, endY: 136 },
             { startX: 1613, endX: 1667, startY: -134, endY: -101 },
             { startX: 1498, endX: 1553, startY: -214, endY: -180 }
         ],
@@ -213,7 +202,6 @@ container.addEventListener("click", function(event) {
         // Diğer profillerin koordinat aralıklarını buraya ekleyebilirsin
     };
 
-    // Tıklanan profilin adını ve bağlantısını bul
     let clickedProfile;
     let profileLink;
     for (const profileName in profiles) {
@@ -229,86 +217,107 @@ container.addEventListener("click", function(event) {
     }
 
     if (clickedProfile) {
-        // Tıklanan profilin bağlantısını aç
-        window.open(profileLink, "_blank");
+        const iframeContainer = document.createElement("div");
+        iframeContainer.style.position = "fixed";
+        iframeContainer.style.top = "50%";
+        iframeContainer.style.left = "50%";
+        iframeContainer.style.transform = "translate(-50%, -50%)";
+        iframeContainer.style.zIndex = "9999";
+        iframeContainer.style.backgroundColor = "#fff";
+        iframeContainer.style.padding = "20px";
+        iframeContainer.style.borderRadius = "8px";
+        iframeContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
+        iframeContainer.style.width = "800px";
+        iframeContainer.style.height = "800px";
+
+        const titleBar = document.createElement("div");
+        titleBar.style.display = "flex";
+        titleBar.style.justifyContent = "space-between";
+        titleBar.style.alignItems = "center";
+        titleBar.style.marginBottom = "10px";
+
+        const titleText = document.createElement("span");
+        titleText.textContent = "Profil Bilgileri";
+        titleText.style.fontWeight = "bold";
+        titleBar.appendChild(titleText);
+
+        const closeButton = document.createElement("button");
+        closeButton.textContent = "X";
+        closeButton.style.border = "none";
+        closeButton.style.backgroundColor = "transparent";
+        closeButton.style.cursor = "pointer";
+        closeButton.style.fontWeight = "bold";
+        closeButton.style.fontSize = "16px";
+        closeButton.style.color = "#999";
+        closeButton.addEventListener("click", function() {
+            document.body.removeChild(iframeContainer);
+        });
+        titleBar.appendChild(closeButton);
+
+        iframeContainer.appendChild(titleBar);
+
+        const iframe = document.createElement("iframe");
+        iframe.src = profileLink;
+        iframe.style.width = "100%";
+        iframe.style.height = "calc(100% - 30px)";
+        iframe.style.border = "none";
+
+        iframeContainer.appendChild(iframe);
+
+        document.body.appendChild(iframeContainer);
     } else {
-        // Belirli bir profil aralığında tıklama yapılmadığında geri bildirimde bulun
-        console.log("Belirli bir profil aralığında tıklama yapılmadı.");
+        console.log("Belirli bir aralıkta tıklama yapılmadı.");
     }
 });
 
+// JavaScript dosyası
 
-    // Kareleri çiz
-    for (let x = 0; x < canvas.width; x += 10) {
-        for (let y = 0; y < canvas.height; y += 10) {
-            context.strokeStyle = "rgba(255, 0, 0, 0.5)";
-            context.strokeRect(x, y, 10, 10);
+// Diğer kodlar...
+
+container.addEventListener("mousemove", function(event) {
+    const rect = container.getBoundingClientRect();
+    const x = Math.round((event.clientX - rect.left) / scale - offsetX);
+    const y = Math.round((event.clientY - rect.top) / scale - offsetY);
+
+    let isClickable = false;
+    let isDraggable = false; // Sürüklenebilir olup olmadığını kontrol etmek için eklenmiş bir değişken
+
+    const profiles = {
+        "shanexx": [ 
+             { startX: 1953, endX: 2009, startY: 24, endY: 60 },
+            { startX: 1613, endX: 1669, startY: -214, endY: -180 },
+            { startX: 1500, endX: 1555, startY: -294, endY: -260 }
+        ],
+        // Diğer profillerin koordinat aralıklarını buraya ekleyebilirsin
+    };
+
+    for (const profileName in profiles) {
+        const profile = profiles[profileName];
+        for (const area of profile) {
+            if (x >= area.startX && x <= area.endX && y >= area.startY && y <= area.endY) {
+                isClickable = true;
+                break;
+            }
         }
+        if (isClickable) break;
     }
 
-image.src = draggable.src;
+    if (isClickable) {
+        container.classList.add("clickable-profile");
+    } else {
+        container.classList.remove("clickable-profile");
+    }
 
-container.addEventListener("wheel", (e) => {
-    e.preventDefault();
-    const delta = e.deltaY * -0.005;
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    const containerRect = container.getBoundingClientRect();
-    const containerWidth = containerRect.width;
-    const containerHeight = containerRect.height;
+    // Sürükleme işlemi kontrolü
+    if (isDragging) {
+        isDraggable = true;
+    }
 
-    const mouseXRelativeToCenter = mouseX - containerRect.left - containerWidth / 2;
-    const mouseYRelativeToCenter = mouseY - containerRect.top - containerHeight / 2;
-
-    const newScale = Math.min(Math.max(0.125, scale + delta), 4);
-
-    offsetX -= mouseXRelativeToCenter * (newScale - scale);
-    offsetY -= mouseYRelativeToCenter * (newScale - scale);
-
-    const maxOffsetX = (draggable.clientWidth * newScale - containerWidth) / 2;
-    const maxOffsetY = (draggable.clientHeight * newScale - containerHeight) / 2;
-
-    offsetX = Math.min(Math.max(offsetX, -maxOffsetX), maxOffsetX);
-    offsetY = Math.min(Math.max(offsetY, -maxOffsetY), maxOffsetY);
-
-    scale = newScale;
-
-    draggable.style.transition = "transform 0.5s ease-in-out";
-    draggable.style.transform = `translate(-50%, -50%) scale(${scale}) translate(${offsetX}px, ${offsetY}px)`;
+    // Eğer sürüklenmiyorsa ve tıklanabilir bir alandaysa, fare işaretini değiştir
+    if (!isDraggable && isClickable) {
+        container.style.cursor = "pointer";
+    } else {
+        container.style.cursor = "default";
+    }
 });
 
-draggable.addEventListener("mousedown", (e) => {
-    e.preventDefault();
-    isDragging = true;
-    prevMouseX = e.clientX;
-    prevMouseY = e.clientY;
-});
-
-document.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    const deltaX = mouseX - prevMouseX;
-    const deltaY = mouseY - prevMouseY;
-    const containerRect = container.getBoundingClientRect();
-    const containerWidth = containerRect.width;
-    const containerHeight = containerRect.height;
-    const imageWidth = draggable.clientWidth * scale;
-    const imageHeight = draggable.clientHeight * scale;
-
-    const maxOffsetX = (imageWidth - containerWidth) / 2;
-    const maxOffsetY = (imageHeight - containerHeight) / 2;
-
-    offsetX = Math.min(Math.max(offsetX + deltaX, -maxOffsetX), maxOffsetX);
-    offsetY = Math.min(Math.max(offsetY + deltaY, -maxOffsetY), maxOffsetY);
-
-    draggable.style.transition = "none";
-    draggable.style.transform = `translate(-50%, -50%) scale(${scale}) translate(${offsetX}px, ${offsetY}px)`;
-
-    prevMouseX = mouseX;
-    prevMouseY = mouseY;
-});
-
-document.addEventListener("mouseup", () => {
-    isDragging = false;
-});
