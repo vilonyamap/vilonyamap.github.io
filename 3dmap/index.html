@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Harita</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Harita</title>
+    <style>
+        #container {
+            position: relative;
+            width: 1880px;
+            height: 900px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            border-radius: 20px; /* Köşeleri yuvarlatmak için bir değer */
+            margin-top: -10px; /* Yukarıya kaydırmak için negatif bir değer */
+        }
+
+        #draggable {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .clickable-profile {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    <div id="container">
+        <img id="draggable" src="3DMapExport8k.png" alt="3D Map">
+    </div>
 
-<div id="container">
-  <img id="draggable" src="3DMapExport8k.png" usemap="#image-map">
-  <map name="image-map">
-    <!-- Örnek bir alan -->
-    <area shape="rect" coords="0,0,50,50" alt="Köşe" title="Köşeye tıklandı">
-    <!-- Diğer alanları buraya ekleyin -->
-  </map>
-</div>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>

@@ -5,22 +5,380 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Harita</title>
     <link rel="stylesheet" href="styles.css">
+	
+</head>
+
+<body>
+
+
+<body>
+
+<!-- Diğer içerikler buraya gelecek -->
+
+<div id="uyeOlButonAlani">
+    <button id="uyeOlButon">Nasıl Üye Olurum?</button>
+</div>
+<div id="toggleButtonAlani">
+    <button id="toggleButton" onclick="toggleMapView()">3D</button>
+</div>
+
+
+
+</body>
+
+
+
+
+ <title>Sabit Alan</title>
+    <style>
+         #sabitAlan {
+            position: fixed; /* Alanın sabit olmasını sağlar */
+            top: 10px; /* Sayfanın üstünden mesafe */
+            right: 220px; /* Sayfanın sağından mesafe */
+            background-color: #ffafdd; /* Yeni arka plan rengi */
+			color: rgb(6, 6, 6);
+            padding: 1rem;
+            border-radius: 15px; /* Köşelerin hafif oval olması için */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Gölgelendirme efekti */
+            color: white; /* Alanın metin rengi */
+            padding: 10px; /* Alan içeriğinden dış kenarlara boşluk */
+            border-radius: 5px; /* Kenar köşeleri */
+            z-index: 9999; /* Diğer içeriklerin üzerinde göstermek için */
+			 #sunucuDurumu, #oyuncuSayisi {
+            margin-left: 90px; /* Textler ile resim arasındaki boşluk */
+			
+			
+        }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Logo">
-        <h1>Minecraft Haritası</h1>
-    </header>
-    <main>
-        <div id="map-container">
+
+<div id="sabitAlan">
+    <img src="" id="sunucuResmi" width="50" height="50" alt="Sunucu Resmi">
+    <div>
+        <h2 id="sunucuDurumu">Sunucu Durumu: <span id="sunucuDurumuMetni"></span></h2>
+<p class="minecraft-fontregular" id="oyuncuSayisi">Oyuncu Sayısı: Yükleniyor...</p>
+		<div id="oyuncuSimgeleri"></div>
+		<div id="sunucuDurumu"></div>
+
+    </div>
+</div>
+
+<script>
+  const apiUrl = 'https://api.mcsrvstat.us/3/vilonya.schvilo.com';
+
+function getServerStatus() {
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Sunucu verileri:", data); // Sunucu verilerini konsola yazdır
+            
+            const sunucuDurumuMetniElement = document.getElementById('sunucuDurumuMetni');
+            const sunucuDurumuText = data.online ? 'Çevrimiçi' : 'Çevrimdışı';
+            
+            // Sunucu durumu bilgisi metni güncelle
+            sunucuDurumuMetniElement.textContent = sunucuDurumuText;
+
+            document.getElementById('oyuncuSayisi').textContent = `Oyuncu Sayısı: ${data.players.online}/${data.players.max}`;
+
+            // Sunucu resmini al ve görüntüle
+            const sunucuResmi = document.getElementById('sunucuResmi');
+            sunucuResmi.src = `https://eu.mc-api.net/v3/server/favicon/${data.hostname}`;
+
+            // Oyuncu simgelerini görüntüle
+            const oyuncuSimgeleriDiv = document.getElementById('oyuncuSimgeleri');
+            oyuncuSimgeleriDiv.innerHTML = ''; // Önceki içeriği temizle
+
+            // Her oyuncu için bir img elementi oluştur
+            data.players.list.forEach(player => {
+                const img = document.createElement('img');
+                img.src = `https://mc-heads.net/head/${player.uuid}`; // UUID kullanarak kafa simgesini al
+                oyuncuSimgeleriDiv.appendChild(img);
+            });
+        })
+        .catch(error => {
+            console.error('Sunucu bilgileri alınamadı:', error);
+            document.getElementById('sunucuDurumuMetni').textContent = 'Bilinmiyor';
+            document.getElementById('oyuncuSayisi').textContent = 'Oyuncu Sayısı: Bilinmiyor';
+        });
+}
+
+window.onload = getServerStatus;
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Overlay -->
+<div id="overlay"></div>
+<!-- Üyelik Penceresi -->
+<div id="uyeOlPencere">
+  <span id="pencereKapat">&#10006;</span>
+  
+  <h2>Nasıl Üye Olurum?</h2>
+  
+    <img src="uye.png" alt="Nasıl üye olurum?" id="uyeOlResim">
+	
+  <p>Server Sürümü : 1.20.4 (Spigot)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<header style="width: 100%; height: 100px; display: flex; justify-content: center; align-items: center;">
+    <style>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+        header img {
+            height: 100%;
+            width: 100px; /* Birinci logonun genişliğini belirle */
+        }
+        header h1 {
+            margin: 0;
+        }
+        .flipped {
+            transform: scaleX(-1); /* Logoyu yatay olarak ters çevirme */
+        }
+        .second-logo-container {
+            margin-right: 10px; /* İkinci logoyu biraz sağa kaydır */
+            width: 130px; /* İkinci logonun genişliğini belirle */
+            height: 130%; /* İkinci logonun yüksekliğini belirle */
+            display: flex; /* İkinci logoyu diğer elementlerle hizalamak için */
+            align-items: center; /* Diğer elementlerle dikey hizalama */
+        }
+        .second-logo-container img {
+            width: 100%; /* İkinci logonun genişliğini yüzde olarak ayarla */
+        }
+        #darkModeButton {
+            background-color: #333; /* Butonun arka plan rengi */
+            color: white; /* Butonun metin rengi */
+            border: none; /* Buton kenarlığı olmadan */
+            padding: 10px 90px; /* Buton iç içe girintileri */
+            border-radius: 5px; /* Butonun köşe yuvarlatma */
+            cursor: pointer; /* Butona tıklanabilir imleç göstergesi */
+            transition: background-color 0.3s ease; /* Arka plan rengi geçiş efekti */
+            position: relative; /* İkonların pozisyonunu belirlemek için */
+        }
+        #darkModeButton:hover {
+            background-color: #555; /* Butonun arka plan rengi hoversı */
+        }
+        .moon-icon,
+        .sun-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: .4s;
+            width: 25px; /* Ay ve güneş ikonlarının genişliği */
+            height: 25px; /* Ay ve güneş ikonlarının yüksekliği */
+        }
+        .moon-icon {
+            left: 3px; /* Ay ikonunun sol kenardan uzaklığı */
+            display: none; /* Başlangıçta ay ikonunu gizle */
+        }
+        .sun-icon {
+            right: 7px; /* Güneş ikonunun sağ kenardan uzaklığı */
+        }
+        input:checked + .slider + .moon-icon {
+            display: inline-block; /* Ay ikonunu göster */
+        }
+        input:checked + .slider + .sun-icon {
+            display: none; /* Güneş ikonunu gizle */
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+        }
+    </style>
+    <img src="guvercin-hareketli-resim-0041.gif" alt="Logo">
+    <h1 id="vilonya-title">Vilonya Maps</h1>
+  
+    <div class="second-logo-container">
+        <img src="guvercin-hareketli-resim-0041.gif" alt="Logo" class="flipped"> <!-- Ters yönde logo -->
+    </div>
+	
+    <div class="dark-mode-switch-container-manual">
+    <label class="switch">
+        <input type="checkbox" id="darkModeSwitch" class="dark-mode-switch">
+        <span class="slider"></span>
+        <img src="ay.png" class="moon-icon">
+        <img src="gunes.png" class="sun-icon">
+		
+		
+		
+		
+
+   
+
+		
+		
+		
+		
+		
+		<div class="container">
+
+    <a href="#" class="button button--piyo">
+        <div class="button__wrapper">
+            <span class="button__text" style="font-family: 'MinecraftBold', sans-serif; font-size: 25px; font-weight: bold; padding-left: -50px;">SHOP</span>
+
+        </div>
+        <div class="characterBox">
+            <div class="character wakeup">
+                <div class="character__face"></div>
+            </div>
+            <div class="character wakeup">
+                <div class="character__face"></div>
+            </div>
+            <div class="character">
+                <div class="character__face"></div>
+            </div>
+        </div>
+    </a>
+
+
+			
+	
+		
+    </label>
+</div>
+
+
+
+</header>
+
+<main>
+    <div id="map-container">
+        <div id="map-frame-wrapper">
             <iframe id="map-frame" src="unmined.index.html" frameborder="0"></iframe>
         </div>
-    </main>
-    <footer>
-        <p>Credit</p>
-    </footer>
-    <button id="toggleButton" onclick="toggleMapView()">3D</button> <!-- 3D harita geçiş butonu -->
-    <button id="streetViewButton" style="display: none;">Street View</button> <!-- Street View butonu, başlangıçta gizli -->
-    <script src="script.js"></script>
+    </div>
+</main>
+
+<main style="padding-bottom: 1500px;">
+    <!-- İçerik buraya gelecek -->
+</main>
+
+<div class="background-image"></div>
+
+<button id="profileWindowButton" style="position: fixed; top: 20px; right: 20px;">Profil Penceresini Aç</button>
+<div id="icon-container"></div>
+
+<p>Bu bir metin paragrafıdır.</p>
+
+<div id="highlightedArea">
+    Bu alan farklı bir arka plan rengine sahip.
+	
+	
+	
+   <body>
+
+<div class="container">
+    <button id="sabitButon">Rasgele Schvilo Repliği</button>
+	
+	
+	
+	
+	
+
+</div>
+
+</body>
+
+
+</div>
+
+<p>Bu da başka bir metin paragrafıdır.</p>
+
+<footer>
+
+
+
+
+
+
+    <p>Credit</p>
+</footer>
+
+
+
+	
+
+
+<script src="script.js"></script>
+<script>
+    function toggleSunIcon() {
+        var sunIcon = document.querySelector(".sun-icon");
+        if (document.body.classList.contains("dark-mode")) {
+            sunIcon.style.display = "none"; // Dark mode açıkken güneş ikonunu gizle
+        } else {
+            sunIcon.style.display = "block"; // Dark mode kapalıyken güneş ikonunu göster
+        }
+    }
+
+    // Sayfa yüklendiğinde işlevi çağır
+    toggleSunIcon();
+
+    // Dark mode değiştiğinde işlevi çağır
+    document.getElementById("darkModeSwitch").addEventListener("change", toggleSunIcon);
+</script>
+
+
+
+
+
 </body>
 </html>
