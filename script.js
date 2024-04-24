@@ -289,3 +289,5 @@ function closePopup() {
 function openLink() {
     window.open("https://vilosbot.github.io/vilonya.github.io/", "_blank");
 }
+
+

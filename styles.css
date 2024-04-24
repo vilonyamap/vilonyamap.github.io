@@ -230,10 +230,10 @@ p.credit::after {
     bottom: 0; /* Aşağıya hizala */
     left: 0; /* Sola hizala */
     background-image: url('vilohi.png'); /* vilohi.png'yi arka plan olarak ekle */
-	background-size: 770px 830px; /* Örnek boyut (genişlik ve yükseklik) */
+	background-size: 570px 630px; /* Örnek boyut (genişlik ve yükseklik) */
     background-position: top right; /* Sağ üst köşeye hizalama */
     background-repeat: no-repeat; /* Tekrar etmeyecek şekilde ayarla */
-    background-position: calc(100% - 0px) 800px; /* Sağ üst köşeye 50 piksel sol ve 20 piksel aşağıda hizalama */
+    background-position: calc(100% - 0px) 210px; /* Sağ üst köşeye 50 piksel sol ve 20 piksel aşağıda hizalama */
     z-index: 0; /* vilohi.png'nin z-index değerini belirle */
 }
 
@@ -242,93 +242,133 @@ p.credit::after {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-    margin-left: 60px; /* Galeriyi sağa kaydır */
+.galeri-container {
+  --space: 2rem;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  gap: var(--space);
+  width: 100%;
+  font-family: "Corben", system-ui, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.5;
+ position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0px; /* İstenilen boşlukları ayarlayabilirsiniz */
 }
 
-.gallery__column {
-    width: 45%;
-    margin-bottom: 550px;
+.marquee {
+  --duration: 40s;
+  --gap: var(--space);
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+  transform: skewY(-3deg);
 }
 
-.gallery__link {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0px;
-    margin-bottom: 30px; /* Kareler arasındaki boşluk */
-    width: 700px; /* Karelerin genişliği */
-    height: 300px; /* Karelerin yüksekliği */
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Hafif bir gölge ekleyerek kartpostal hissi ver */
-    border: solid 5px #555; /* Siyah kenarlık ekle */
+.marquee__group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+  animation: scroll var(--duration) linear infinite;
 }
 
-.gallery__image {
-    max-width: 100%; /* Kare içindeki resmin maksimum genişliği */
-    max-height: 100%; /* Kare içindeki resmin maksimum yüksekliği */
-    width: 100%; /* Resmin kare içindeki genişliği */
-    height: auto; /* Yükseklik otomatik ayarlanacak */
-    transform: scale(1.0); /* Resmi 1.2 kat büyüt */
-    object-position: 0px 0px; /* Yatayda 20 piksel, dikeyde 30 piksel */
+
+
+
+
+/* İstenilen diğer resimler için aynı şekilde devam edebilirsiniz */
+
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__group {
+    animation-play-state: paused;
+  }
 }
 
-.gallery__caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    font-family: 'MinecraftRegular', sans-serif; /* MinecraftRegular-Bmg3.otf fontunu kullan */
-    font-size: 16px; /* Yazı boyutunu istediğiniz gibi ayarlayın */
+.marquee__group img {
+  max-width: clamp(10rem, 1rem + 28vmin, 20rem);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 1rem;
 }
 
-.gallery__link:hover .gallery__image {
-    transform: scale(1.03); /* Yumuşatılmış büyüme efekti */
+.marquee__group p {
+  background-image: linear-gradient(
+    75deg,
+    hsl(240deg 70% 49%) 0%,
+    hsl(253deg 70% 49%) 11%,
+    hsl(267deg 70% 49%) 22%,
+    hsl(280deg 71% 48%) 33%,
+    hsl(293deg 71% 48%) 44%,
+    hsl(307deg 71% 48%) 56%,
+    hsl(320deg 71% 48%) 67%,
+    hsl(333deg 72% 48%) 78%,
+    hsl(347deg 72% 48%) 89%,
+    hsl(0deg 73% 47%) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.gallery__link:hover .gallery__caption {
-    opacity: 1;
+.marquee--borders {
+  border-block: 3px solid dodgerblue;
+  padding-block: 0.75rem;
 }
 
-@font-face {
-    font-family: "MinecraftBold";
-    src: url("fonts/MinecraftBold-nMK1.otf") format("opentype");
+.marquee--reverse .marquee__group {
+  animation-direction: reverse;
+  animation-delay: calc(var(--duration) / -2);
 }
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+
+
+
+
+
+.cerceve-container img {
+  position: absolute; /* Resmin konumunu sabit tut */
+  top: 52%; /* Ekranın üst kısmından dikey olarak %60 konumlandır */
+  max-width: 100%;
+  max-height: 100%;
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #vilonya-title {
-    font-family: "MinecraftBold", sans-serif;
-    text-shadow: 2px 2px 4px #000000; /* Gölgelendirme efekti */
+    font-family: "MinecraftBold", sans-serif !important;
+    text-shadow: 2px 2px 4px #000000 !important; /* Gölgelendirme efekti */
     /* Diğer stil özellikleri */
 }
 
@@ -1008,6 +1048,87 @@ input:checked + .slider:before {
 }
 
 
+@font-face {
+  font-family: 'trminecraftfont';
+  src: url('fonts/TRMinecraftia-Regular.ttf') format('truetype');
+}
+
+
+#yamanotlari {
+    width: 300px; /* Genişlik */
+    height: 50px; /* Yükseklik */
+    padding: 10px 99px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    z-index: 9998;
+    position: absolute;
+    right: 25%;
+    bottom: 1320px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
+    background-image: url('button72.png');
+    background-size: 300px 50px; /* Arka plan resminin boyutunu ayarla */
+    transition: background-image 0.2s ease; /* Geçiş efekti için */
+	line-height: 10px; /* Yazıyı dikey olarak ortaya hizala */	
+    text-align: center; /* Texti uzunlamasına ortala */
+    text-shadow: 2px 5px 1px rgba(0, 0, 0, 1); /* 2px sağa ve 2px aşağıya gölge ekle, 4px bulanıklık, 0.5 opaklık */
+	white-space: nowrap; /* Yazının alt alta değil yan yana yazılmasını sağla */
+    display: flex; /* Flex kutusu oluştur */
+    justify-content: center; /* İçeriği yatay olarak ortala */
+    align-items: center; /* İçeriği dikey olarak ortala */
+	font-family: 'MinecraftRegular', sans-serif; /* Minecraft fontunu ata */
+	
+}
+
+#yamanotlari span {
+    width: 100%; /* Yazının genişliğini butonun tam genişliği yap */
+}
+
+@font-face {
+    font-family: 'MinecraftBold';
+    src: url('font/MinecraftBold-nMK1.otf') format('opentype');
+}
+
+#yamanotlari:active {
+    transform: translateY(2px); /* Y ekseni boyunca 2 piksel aşağı kaydırma */
+}
+
+
+#yamanotlari:hover {
+    background-image: url('button72hover.png');
+}
+/* İstediğiniz zaman boyutunu, konumunu ve diğer özelliklerini değiştirebilirsiniz */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1030,7 +1151,7 @@ input:checked + .slider:before {
     z-index: 9998;
     position: absolute;
     right: 25%;
-    bottom: 630px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
+    bottom: 1400px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
     background-image: url('button72.png');
     background-size: 300px 50px; /* Arka plan resminin boyutunu ayarla */
     transition: background-image 0.2s ease; /* Geçiş efekti için */
@@ -1397,7 +1518,7 @@ body:has(.switch__input:checked) {
 
 .highlightedArea {
     position: absolute;
-    bottom: 110px;
+    bottom: 910px;
     left: 215px;
 	z-index: 9999; /* Yüksek bir değer vererek diğer öğelerin üzerine çıkmasını sağlayabilirsiniz */
 
@@ -1502,7 +1623,7 @@ body:has(.switch__input:checked) {
 
 .normal-image {
     position: absolute;
-    bottom: 270px; /* Alt kenardan 270 piksel yukarıda */
+    bottom: 1070px; /* Alt kenardan 270 piksel yukarıda */
     left: 110px; /* Sol kenardan 110 piksel içeride */
     z-index: 9999; /* Diğer öğelerin üstünde olmasını sağlar */
     transition: opacity 1s ease; /* Geçiş efekti ekleyin */
@@ -1512,7 +1633,7 @@ body:has(.switch__input:checked) {
 
 .hover-image {
     position: absolute;
-    bottom: 270px; /* Alt kenardan 270 piksel yukarıda */
+    bottom: 1070px; /* Alt kenardan 270 piksel yukarıda */
     left: 110px; /* Sol kenardan 110 piksel içeride */
     z-index: 9999; /* Diğer öğelerin üstünde olmasını sağlar */
     transition: opacity 0.3s ease; /* Geçiş efekti ekleyin */
@@ -1531,3 +1652,36 @@ body:has(.switch__input:checked) {
 ///////////////MC BUTON 
 
 f8cfc9
+
+
+
+
+
+
+.ender-container {
+  position: relative; /* Konumlandırma için container'a göre pozisyonlandırma */
+}
+
+#minecraft-image {
+  position: absolute; /* Resmi sabitlemek için mutlak pozisyon */
+  left: -50px; /* Sol kenardan uzaklık */
+  bottom: 750px; /* Alt kenardan uzaklık */
+  z-index: 9999; /* Diğer öğelerin üstünde olması için */
+  transform: rotateY(180deg); /* Resmi yatayda flip etmek */
+}
+
+
+
+
+
+.redsotne-container {
+    position: relative;
+    
+}
+
+.redstone-image {
+    position: absolute;
+    top: 10%;
+    left: calc(50% + 290px); /* Sağa kaydırma miktarını burada belirleyin */
+    transform: translate(-50%, -50%);
+}
