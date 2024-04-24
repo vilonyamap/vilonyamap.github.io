@@ -22,7 +22,42 @@ html, body {
     background-repeat: repeat; /* Resmi yatay ve dikey olarak tekrar et */
     background-size: 9%; /* Resmin boyutunu küçültmek için yüzde değeri */
     background-position: center; /* Resmi ortala */
+	
 }
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.old-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('arkplanrepeat.png');
+    background-repeat: repeat; /* Resmi yatay ve dikey olarak tekrar et */
+    background-size: 9%; /* Resmin boyutunu küçültmek için yüzde değeri */
+    background-position: center; /* Resmi ortala */
+}
+
+.new-background {
+    position: absolute;
+    bottom: 0; /* Sayfanın alt kısmında yer alması için */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('maparkaplan.png'); /* Yeni arkaplan resmi */
+    background-repeat: no-repeat; /* Resmin tekrar edilmesini engeller */
+    background-size: cover; /* Resmi ekranın tamamını kaplayacak şekilde boyutlandırır */
+    background-position: center bottom; /* Resmi dikey ve yatay olarak ortalar ve alt kısımda yer almasını sağlar */
+}
+
 
 
 header {
@@ -69,12 +104,7 @@ header img {
     margin-top: -0px; /* Örnek olarak -15px negatif margin değeri */
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-}
+
 
 #toggleButton {
     width: 100px; /* Genişlik */
@@ -122,23 +152,173 @@ footer {
 }
 
 
+
 footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: relative; /* Yeni eklenen stil */
+    position: absolute; /* Sabit konum */
+	bottom: -1620px; /* Sayfanın altından 50 piksel yukarıda */
+    left: 0; /* Sol kenara hizala */
+    width: 100%; /* Tam genişlik */
+    background-color: #333; /* Arka plan rengi */
+    color: white; /* Metin rengi */
+    text-align: center; /* Metin hizalama */
+    padding: 10px 0; /* Dolgu (yukarı/aşağı: 10px, sağ/sol: 0) */
+    z-index: 999; /* Diğer içeriğin üzerine çıkması için */
+	 font-family: 'MinecraftRegular', sans-serif; /* MinecraftRegular fontunu kullan */
 }
+
+
+
+p.credit {
+    position: relative; /* Göreceli konumlandırma kullan */
+}
+
+p.credit::after {
+    content: '';
+    background-image: url('9012-nerd.png');
+    background-repeat: no-repeat;
+    background-size: 50px; /* Resmin boyutunu istediğiniz gibi ayarlayabilirsiniz */
+    width: 50px; /* Resmin genişliği */
+    height: 50px; /* Resmin yüksekliği */
+    position: absolute; /* Mutlak konumlandırma kullan */
+    top: -30%; /* Metnin dikey ortasına hizala */
+    right: 1; /* Sağa hizala */
+    transform: translateY(-50%); /* Dikey eksende tam ortaya hizala */
+}
+
+
+
 
 /* Belirli bir mesafede sabit bir alan oluşturmak için */
 #highlightedArea {
     position: absolute;
     bottom: -1550px; /* İstediğiniz mesafeyi burada belirtin */
-    left: 0;
+	right: 0; /* Sağ köşeye sabitleme */
     width: 100%;
     height: 1590px; /* Örnek olarak 100 piksel yüksekliği */
     background-color: #f8cfc9; /* Örnek olarak sarı */
-    z-index: 1;
+    z-index: 0;
+	 /* İstenen diğer stiller buraya eklenecek */
+    background-image: url('vilohi.png');
+      background-size: 700px 800px; /* Genişlik ve yükseklik piksel cinsinden */
+	background-color: rgba(248, 207, 201, 1); /* Arkaplan rengi */
+	
+    
+}
+
+#highlightedArea {
+    
+    /* İstenen diğer stiller buraya eklenecek */
+	background-position: top right; /* Sağ üst köşeye hizalama */
+	  background-position: calc(100% - 0px) 800px; /* Sağ üst köşeye 50 piksel sol ve 20 piksel aşağıda hizalama */
+	  background-repeat: no-repeat; /* Resmin tekrar etmemesi için */
+	background-image: url('areabc.png'); /* Sadece areabc.png'yi ekle */
+    background-size: cover; /* Resmi kaplayacak şekilde boyutlandır */
+    background-position: center; /* Resmi merkezde hizala */
+	  z-index: 0; /* Vilohi.png'nin z-index değerini arttır */
+
+}
+
+
+.dark-mode #highlightedArea {
+    background-image: url('darkmodeareabc.png'); /* Dark moda geçildiğinde kullanılacak arka plan resmi */
+}
+
+#vilohiBackground {
+    position: absolute; /* Pozisyonu absolute olarak ayarla */
+    top: 0; /* Yukarıya hizala */
+    right: 0; /* Sağa hizala */
+    bottom: 0; /* Aşağıya hizala */
+    left: 0; /* Sola hizala */
+    background-image: url('vilohi.png'); /* vilohi.png'yi arka plan olarak ekle */
+	background-size: 770px 830px; /* Örnek boyut (genişlik ve yükseklik) */
+    background-position: top right; /* Sağ üst köşeye hizalama */
+    background-repeat: no-repeat; /* Tekrar etmeyecek şekilde ayarla */
+    background-position: calc(100% - 0px) 800px; /* Sağ üst köşeye 50 piksel sol ve 20 piksel aşağıda hizalama */
+    z-index: 0; /* vilohi.png'nin z-index değerini belirle */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    margin-left: 60px; /* Galeriyi sağa kaydır */
+}
+
+.gallery__column {
+    width: 45%;
+    margin-bottom: 550px;
+}
+
+.gallery__link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+    margin-bottom: 30px; /* Kareler arasındaki boşluk */
+    width: 700px; /* Karelerin genişliği */
+    height: 300px; /* Karelerin yüksekliği */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Hafif bir gölge ekleyerek kartpostal hissi ver */
+    border: solid 5px #555; /* Siyah kenarlık ekle */
+}
+
+.gallery__image {
+    max-width: 100%; /* Kare içindeki resmin maksimum genişliği */
+    max-height: 100%; /* Kare içindeki resmin maksimum yüksekliği */
+    width: 100%; /* Resmin kare içindeki genişliği */
+    height: auto; /* Yükseklik otomatik ayarlanacak */
+    transform: scale(1.0); /* Resmi 1.2 kat büyüt */
+    object-position: 0px 0px; /* Yatayda 20 piksel, dikeyde 30 piksel */
+}
+
+.gallery__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-family: 'MinecraftRegular', sans-serif; /* MinecraftRegular-Bmg3.otf fontunu kullan */
+    font-size: 16px; /* Yazı boyutunu istediğiniz gibi ayarlayın */
+}
+
+.gallery__link:hover .gallery__image {
+    transform: scale(1.03); /* Yumuşatılmış büyüme efekti */
+}
+
+.gallery__link:hover .gallery__caption {
+    opacity: 1;
 }
 
 @font-face {
@@ -157,18 +337,13 @@ footer {
 
 /* Dark mode switch */
 /* Dark mode switch */
-.dark-mode-switch-container {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 70px;
-  height: 34px;
-}
+
+
+
+
+
+
 
 .switch input {
   opacity: 0;
@@ -180,8 +355,8 @@ footer {
   position: absolute;
   cursor: pointer;
   top: 0;
-  left: 0;
-  width: 65px; /* Genişliği artır */
+  left: 520;
+  width: 165px; /* Genişliği artır */
   height: 34px;
   background-color: #ccc;
   transition: .4s;
@@ -240,17 +415,6 @@ input:checked + .slider:before {
 
 
 
-.dark-mode header {
-  background: #000; /* Dark mode için arkaplan rengi */
-  color: #fff; /* Dark mode için metin rengi */
-}
-.dark-mode {
-  background-color: #000; /* Dark mode için arkaplan rengi */
-  color: #fff; /* Dark mode için metin rengi */
-}
-body.dark-mode #highlightedArea {
-    background-color: black; /* Dark mode'da kullanılan arkaplan rengi */
-}
 
 
 
@@ -804,7 +968,7 @@ body.dark-mode #highlightedArea {
 }
 .button--piyo {
     position: flex;
-    top: -3px; /* İstediğiniz mesafeye göre ayarlayın */
+    top: 15px; /* İstediğiniz mesafeye göre ayarlayın */
     left: 60px; /* İstediğiniz mesafeye göre ayarlayın */
     z-index: 999; /* Butonun diğer içeriklerin üstünde kalması için z-index değeri */
 }
@@ -863,10 +1027,10 @@ body.dark-mode #highlightedArea {
     cursor: pointer;
     font-size: 16px;
     outline: none;
-    z-index: 9999;
+    z-index: 9998;
     position: absolute;
-    right: 1%;
-    bottom: 20px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
+    right: 25%;
+    bottom: 630px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
     background-image: url('button72.png');
     background-size: 300px 50px; /* Arka plan resminin boyutunu ayarla */
     transition: background-image 0.2s ease; /* Geçiş efekti için */
@@ -972,10 +1136,12 @@ body.dark-mode #highlightedArea {
     outline: none;
     z-index: 9999;
     position: fixed;
-    right: 1%;
-    bottom: 890px;
+    top: 15px; /* Sağ üst köşeye sabitleme */
+    right: 20px; /* Sağ üst köşeye sabitleme */
     background-image: url('button72minik.png');
-    background-size: 180px 50px;
+	background-size: cover; /* Arka plan resmini kaplayacak şekilde boyutlandırma */
+    background-position: center; /* Arka plan resmini ortalamak için */
+    background-size: 182px 50px;
     transition: background-image 0.2s ease;
     line-height: 10px;
     text-align: center;
@@ -994,14 +1160,10 @@ body.dark-mode #highlightedArea {
 #uyeOlButon:hover {
     background-image: url('button72hover.png');
 }
-#uyeOlButon {
-    /* Mevcut stil kodları */
-    background-position: -0.5px 0; /* İstediğiniz yatay ve dikey konumu belirleyin */
-}
+
 #uyeOlButon:active {
     transform: translateY(2px); /* Y ekseni boyunca 2 piksel aşağı kaydırma */
 }
-
 
 
 
@@ -1056,6 +1218,316 @@ body.dark-mode #highlightedArea {
 }
 
 
+
+
+:root {
+	--hue: 223;
+	--bg: hsl(var(--hue),10%,90%);
+	--fg: hsl(var(--hue),10%,10%);
+	--primary: hsl(var(--hue),90%,50%);
+	--trans-dur: 0.3s;
+	--trans-timing: cubic-bezier(0.76,0.05,0.24,0.95);
+	--trans-timing-in: cubic-bezier(0.76,0.05,0.86,0.06);
+	--trans-timing-out: cubic-bezier(0.05,0.76,0.06,0.86);
+	font-size: calc(40px + (80 - 40) * (100vw - 320px) / (2560 - 320px));
+}
+
+.switch-container {
+      position: absolute; /* Footerın sol altına sabitlemek için */
+    bottom: 20px; /* Footerın altına olan mesafe */
+    left: 20px; /* Footerın soluna olan mesafe */
+    z-index: 999; /* Diğer içeriklerin üzerinde olması için */
+    transform: scale(1.5); /* Varsayılan boyut */
+    transition: transform 0.3s ease-in-out; /* Yeniden boyutlandırma için geçiş efekti */
+	
+}
+
+}
+body:has(.switch__input:checked) {
+	background-color: var(--fg);
+	color: var(--bg);
+}
+
+.dark-mode {
+	background-color: #333; /* Dark modda arkaplan rengi */
+	color: #ddd; /* Dark modda metin rengi */
+}
+
+.dark-mode header {
+	background: #333; /* Dark modda başlık alanının arkaplan rengi */
+	color: #ddd; /* Dark modda başlık alanının metin rengi */
+}
+
+.dark-mode #highlightedArea {
+	background-color: #333; /* Dark modda vurgulanan alanın arkaplan rengi */
+}
+
+
+
+
+
+
+
+
+
+
+.switch {
+	margin: auto;
+	position: relative;
+}
+.switch__icon,
+.switch__input {
+	display: block;
+}
+.switch__icon {
+	position: absolute;
+	top: 0.375em;
+	right: 0.375em;
+	width: 0.75em;
+	height: 0.75em;
+	transition:
+		opacity calc(var(--trans-dur) / 2),
+		transform calc(var(--trans-dur) / 2);
+}
+.switch__icon polyline {
+	transition: stroke-dashoffset calc(var(--trans-dur) / 2);
+}
+.switch__icon--light,
+.switch__icon--light polyline {
+	transition-delay: calc(var(--trans-dur) / 2);
+	transition-timing-function: var(--trans-timing-out);
+}
+.switch__icon--dark {
+    opacity: 0;
+    transform: translateX(-0.75em) rotate(30deg) scale(0.75);
+    transition-timing-function: var(--trans-timing-in);
+}
+
+
+
+
+.switch__input {
+	background-color: hsl(210,90%,70%);
+	border-radius: 0.75em;
+	box-shadow:
+		0 0 0 0.125em hsla(var(--hue),90%,50%,0),
+		0.125em 0.125em 0.25em hsla(var(--hue),90%,10%,0.2);
+	outline: transparent;
+	position: relative;
+	width: 3em;
+	height: 1.5em;
+	-webkit-appearance: none;
+	appearance: none;
+	-webkit-tap-highlight-color: transparent;
+	transition:
+		background-color var(--trans-dur) var(--trans-timing),
+		box-shadow 0.15s linear;
+}
+.switch__input:focus-visible {
+	box-shadow:
+		0 0 0 0.125em hsl(var(--hue),90%,50%),
+		0.125em 0.125em 0.25em hsla(var(--hue),90%,10%,0.2);
+}
+.switch__input:before,
+.switch__input:after {
+	content: "";
+	display: block;
+	position: absolute;
+}
+.switch__input:before {
+	background-color: hsl(50,90%,50%);
+	border-radius: inherit;
+	mask-image: linear-gradient(120deg,hsl(0,0%,0%) 20%,hsla(0,0%,0%,0) 80%);
+	-webkit-mask-image: linear-gradient(120deg,hsl(0,0%,0%) 20%,hsla(0,0%,0%,0) 80%);
+	inset: 0;
+	transition: background-color var(--trans-dur) var(--trans-timing);
+}
+.switch__input:after {
+	background-color: hsl(0,0%,100%);
+	border-radius: 50%;
+	box-shadow: 0.05em 0.05em 0.05em hsla(var(--hue),90%,10%,0.1);
+	top: 0.125em;
+	left: 0.125em;
+	width: 1.25em;
+	height: 1.25em;
+	transition:
+		background-color var(--trans-dur) var(--trans-timing),
+		transform var(--trans-dur) var(--trans-timing);
+	z-index: 1;
+}
+.switch__input:checked {
+	background-color: hsl(290,90%,40%);
+}
+.switch__input:checked:before {
+	background-color: hsl(220,90%,40%);
+}
+.switch__input:checked:after {
+	background-color: hsl(0,0%,0%);
+	transform: translateX(1.5em);
+}
+.switch__input:checked ~ .switch__icon--light,
+.switch__input:checked ~ .switch__icon--light polyline {
+	transition-delay: 0s;
+	transition-timing-function: var(--trans-timing-in);
+}
+.switch__input:checked ~ .switch__icon--light {
+	opacity: 0;
+	transform: translateX(-0.75em) rotate(-30deg) scale(0.75);
+}
+.switch__input:checked ~ .switch__icon--light polyline {
+	stroke-dashoffset: 1.5;
+}
+.switch__input:checked ~ .switch__icon--dark {
+	opacity: 1;
+	transform: translateX(-1.5em);
+	transition-delay: calc(var(--trans-dur) / 2);
+	transition-timing-function: var(--trans-timing-out);
+}
+.switch__sr {
+	overflow: hidden;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+}
+
+
+
+
+
+
+.highlightedArea {
+    position: absolute;
+    bottom: 110px;
+    left: 215px;
+	z-index: 9999; /* Yüksek bir değer vererek diğer öğelerin üzerine çıkmasını sağlayabilirsiniz */
+
+}
+
+.swing {
+    animation: swing ease-in-out 1s infinite alternate;
+    transform-origin: center -50px;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.5);
+	z-index: 9995; /* Yüksek bir değer vererek diğer öğelerin üzerine çıkmasını sağlayabilirsiniz */
+	
+}
+
+.swing img {
+    border: 0px solid #f8f8f8;
+    display: block;
+	z-index: 9995; /* Yüksek bir değer vererek diğer öğelerin üzerine çıkmasını sağlayabilirsiniz */
+}
+
+
+.swing:after {
+    content: '';
+    position: absolute;  
+    width: 70px;
+    height: 70px;
+    border: 5px solid #999;
+    top: -35px;
+    left: 40%;
+    z-index: 0;
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(45deg);
+	
+}
+
+.swing:before {
+    content: '';
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    top: -50px;
+    left: 48%;
+    z-index: 5;
+    border-radius: 50% 50%;
+    background: #964B00;
+}
+
+.swing:hover {
+    cursor: pointer;
+}
+
+@keyframes swing {
+    0% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
+}
+
+
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 20%; /* Ekranın yüzde 50'sinde dikey olarak ortalanır */
+    left: 50%; /* Ekranın yüzde 50'sinde yatay olarak ortalanır */
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 1); /* Arkaplanı opak beyaz yap */
+    padding: 20px;
+    border-radius: 10px; /* Kenarları yuvarlat */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hafif bir gölge ekle */
+    z-index: 9999;
+    width: 80%;
+    max-width: 600px;
+    overflow-y: auto; /* Dikey kaydırma ekleyin */
+	font-family: 'Poiret One', sans-serif;
+	font-weight: bold; /* Yazı tipini kalınlaştır */
+	 font-size: 25px; /* Yazı fontunu istediğiniz boyuta ayarlayın */
+	 max-height: 540px; /* İçeriğin maksimum yüksekliği */
+    overflow-y: auto; /* Dikey kaydırma çubuğunu görüntüle */
+
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 50px; /* Çarpı butonunun boyutunu arttır */
+    font-weight: bold;
+	 z-index: 9999;
+}
+
+.popup h1 {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+	 z-index: 9999;
+}
+
+
+
+.normal-image {
+    position: absolute;
+    bottom: 270px; /* Alt kenardan 270 piksel yukarıda */
+    left: 110px; /* Sol kenardan 110 piksel içeride */
+    z-index: 9999; /* Diğer öğelerin üstünde olmasını sağlar */
+    transition: opacity 1s ease; /* Geçiş efekti ekleyin */
+    opacity: 1; /* Normal durumda görünür yapın */
+}
+
+
+.hover-image {
+    position: absolute;
+    bottom: 270px; /* Alt kenardan 270 piksel yukarıda */
+    left: 110px; /* Sol kenardan 110 piksel içeride */
+    z-index: 9999; /* Diğer öğelerin üstünde olmasını sağlar */
+    transition: opacity 0.3s ease; /* Geçiş efekti ekleyin */
+    opacity: 0; /* Hover durumunda görünmez yapın */
+}
+
+.hover-image:hover {
+    cursor: pointer;
+    opacity: 1; /* Hover durumunda görünür yapın */
+}
+
+
+.market-image:hover ~ .normal-image {
+    opacity: 0; /* Hover durumunda normal resmi görünmez yapın */
+}
 ///////////////MC BUTON 
 
 f8cfc9

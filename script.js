@@ -187,15 +187,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-document.getElementById('darkModeSwitch').addEventListener('click', function() {
-  document.body.classList.toggle('dark-mode');
+const switchInput = document.querySelector('.switch__input');
+
+switchInput.addEventListener('change', function() {
+  if (this.checked) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
 });
-
-
-function toggleDarkMode() {
-  var body = document.body;
-  body.classList.toggle("dark-mode");
-}
 
 
 
@@ -258,3 +258,34 @@ resim.addEventListener("click", function() {
 });
 
 
+window.onload = function() {
+    var popupTrigger = document.getElementById("popupTrigger");
+    if (popupTrigger) {
+        popupTrigger.onclick = function() {
+            openPopup();
+        };
+    } else {
+        console.error("popupTrigger öğesi bulunamadı.");
+    }
+};
+
+function openPopup() {
+    var popup = document.getElementById("popup");
+    var overlay = document.createElement("div"); // Overlay oluştur
+   
+    popup.style.display = "block"; // Pencereyi görünür yap
+}
+function closePopup() {
+    var popup = document.getElementById("popup");
+    var overlay = document.querySelector(".overlay"); // Overlay'i seç
+    if (overlay) {
+        overlay.parentNode.removeChild(overlay); // Overlay'i kaldır
+    }
+    popup.style.display = "none"; // Pencereyi gizle
+}
+
+
+
+function openLink() {
+    window.open("https://vilosbot.github.io/vilonya.github.io/", "_blank");
+}

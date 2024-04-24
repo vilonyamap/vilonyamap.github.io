@@ -66,7 +66,11 @@
 </div>
 
 <script>
-  const apiUrl = 'https://api.mcsrvstat.us/3/vilonya.schvilo.com';
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+	
+ const apiUrl = 'https://api.mcsrvstat.us/3/vilonya.schvilo.com';
 
 function getServerStatus() {
     fetch(apiUrl)
@@ -79,8 +83,18 @@ function getServerStatus() {
             
             // Sunucu durumu bilgisi metni güncelle
             sunucuDurumuMetniElement.textContent = sunucuDurumuText;
+			
+			// Sunucu durumu bilgisi metni rengini güncelle
+sunucuDurumuMetniElement.style.color = data.online ? 'green' : 'red';
 
-            document.getElementById('oyuncuSayisi').textContent = `Oyuncu Sayısı: ${data.players.online}/${data.players.max}`;
+            const oyuncuSayisiMetniElement = document.getElementById('oyuncuSayisi');
+            let oyuncuSayisiText = 'Oyuncu Sayısı: Bilinmiyor';
+            if (data.players && data.players.online && data.players.max) {
+                oyuncuSayisiText = `Oyuncu Sayısı: ${data.players.online}/${data.players.max}`;
+            } else {
+                oyuncuSayisiText = 'Oyuncu Sayısı: 0';
+            }
+            oyuncuSayisiMetniElement.textContent = oyuncuSayisiText;
 
             // Sunucu resmini al ve görüntüle
             const sunucuResmi = document.getElementById('sunucuResmi');
@@ -90,12 +104,16 @@ function getServerStatus() {
             const oyuncuSimgeleriDiv = document.getElementById('oyuncuSimgeleri');
             oyuncuSimgeleriDiv.innerHTML = ''; // Önceki içeriği temizle
 
-            // Her oyuncu için bir img elementi oluştur
-            data.players.list.forEach(player => {
-                const img = document.createElement('img');
-                img.src = `https://mc-heads.net/head/${player.uuid}`; // UUID kullanarak kafa simgesini al
-                oyuncuSimgeleriDiv.appendChild(img);
-            });
+            if (data.players && data.players.list) {
+                // Her oyuncu için bir img elementi oluştur
+                data.players.list.forEach(player => {
+                    const img = document.createElement('img');
+                    img.src = `https://mc-heads.net/head/${player.uuid}`; // UUID kullanarak kafa simgesini al
+                    oyuncuSimgeleriDiv.appendChild(img);
+                });
+            } else {
+                console.log("Sunucuda oyuncu bulunamadı.");
+            }
         })
         .catch(error => {
             console.error('Sunucu bilgileri alınamadı:', error);
@@ -105,6 +123,10 @@ function getServerStatus() {
 }
 
 window.onload = getServerStatus;
+
+    getServerStatus();
+});
+
 </script>
 
 
@@ -124,12 +146,9 @@ window.onload = getServerStatus;
 <div id="overlay"></div>
 <!-- Üyelik Penceresi -->
 <div id="uyeOlPencere">
-  <span id="pencereKapat">&#10006;</span>
-  
+  <span id="pencereKapat">&#10006;</span> 
   <h2>Nasıl Üye Olurum?</h2>
-  
-    <img src="uye.png" alt="Nasıl üye olurum?" id="uyeOlResim">
-	
+    <img src="uye.png" alt="Nasıl üye olurum?" id="uyeOlResim">	
   <p>Server Sürümü : 1.20.4 (Spigot)</p>
 </div>
 
@@ -253,8 +272,8 @@ window.onload = getServerStatus;
 	
     <div class="dark-mode-switch-container-manual">
     <label class="switch">
-        <input type="checkbox" id="darkModeSwitch" class="dark-mode-switch">
-        <span class="slider"></span>
+        
+       
         <img src="ay.png" class="moon-icon">
         <img src="gunes.png" class="sun-icon">
 		
@@ -308,6 +327,14 @@ window.onload = getServerStatus;
     </div>
 </main>
 
+<div class="background">
+    <div class="old-background"></div>
+    <div class="new-background"></div>
+</div>
+
+
+
+
 <main style="padding-bottom: 1500px;">
     <!-- İçerik buraya gelecek -->
 </main>
@@ -320,20 +347,84 @@ window.onload = getServerStatus;
 <p>Bu bir metin paragrafıdır.</p>
 
 <div id="highlightedArea">
+
     Bu alan farklı bir arka plan rengine sahip.
 	
 	
+<img src="market.png" alt="Market" class="market-image normal-image" onclick="openLink()">
+<img src="markethover.png" alt="Market" class="market-image hover-image" onclick="openLink()">
+
+
+	<div class="blur-element">
+
+	<body>
+    <div class="content">
+        <!-- Sayfa içeriği buraya gelecek -->
+
+
+        <div class="highlightedArea">
+            <figure class="swing" id="popupTrigger" onclick="openPopup()">
+    <img src="kurallarsade.png" width="400">
+</figure>
+
+        </div>
+    </div>
+	 <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+		 <h1>KURALLAR</h1> <!-- Başlık ekle -->
+		<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lobster&family=Poiret+One&display=swap" rel="stylesheet">
+		   
+        <p>1. Twitch topluluk ve kanalın genel sohbet, davranış kuralları sunucu içerisinde de geçerlidir.</p>
+		 <p>2. Sunucuda başkalarının oyun keyfini azaltabileceğini düşündüğünüz tüm aksiyonlardan kaçının.</p>
+		 <p>3. Vilonya MC Sunucusu özel bir sunucudur. İnşa ettiğiniz alanları güvenli hale getirmek için bit bağışı karşılığında arazi bloğu alıp arazinizi güvenli hale getirebilirsiniz. Arazi sahibi kişilerin eşyalarına ve yapılarına zarar veremiyor olmanız, arazisi olmayan oyuncuların yapılarına zarar verebileceğiniz anlamına gelmez. Bu yüzden her oyuncuya karşı eşit ve adaletli davrandığınızdan ve emeğe saygı gösterdiğinizden emin olun.</p>
+		 <p>4. Sunucunun çevre düzenini korumak için inşaat kısıtlamalarını dikkate alın.</p>
+		 <p>5. Vadide max. 2 katlı yapılar yapmaya, tarla ve bahçelerinizi optimum genişlikte tutmaya çalışın. Çiftliklerinizdeki hayvan sayısının yakınlardaki evlerde gürültüye sebep olmadığından emin olun.
+Vadide modern/fütüristik yapılardan kaçının.</p>
+		 <p>Bu tür yapılar için merkezden görünmeyecek uzaklıkta yerleri tercih edin. Vadide gösterişli maden girişlerinden kaçının ya da evinizin altından giriş yapın. Uzun maden maceraları için vadiden uzak alanlara bakın. Vadi ve etrafı oyuncuların yaşam alanıdır.</p>
+		 <p>Bu yüzden doğal dokusunu korumaya özen gösterin. Göz alıcı blok, renk ve aydınlatmalar kullanmaktan kaçının.
+Kurallara uyan her oyuncuya şimdiden teşekkürler. Vilonya'da kalbi iyilik için atan herkese her zaman yer var.</p>
+    </div>
 	
+</body>
+
+	İçeriğinizi buraya ekleyin</div>
+	
+	  <div id="vilohiBackground"></div>
+	<div class="gallery">
+    <div class="gallery__column">
+        <a href="#" class="gallery__link">
+            <img src="acilis.png" alt="Açılış" class="gallery__image">
+            <div class="gallery__caption">Server Açılışı</div>
+        </a>
+
+        <a href="#" class="gallery__link">
+            <img src="farm.png" alt="Çiftlik" class="gallery__image">
+            <div class="gallery__caption">Agalarla Farm</div>
+        </a>
+    </div>
+
+    <div class="gallery__column">
+        <a href="#" class="gallery__link">
+            <img src="evziyareti.png" alt="Ev Ziyareti" class="gallery__image">
+            <div class="gallery__caption">Ev Ziyareti</div>
+        </a>
+
+        <a href="#" class="gallery__link">
+            <img src="tatlisapik.png" alt="Tatlı Sapiği" class="gallery__image">
+            <div class="gallery__caption">Başkan sevgimiz</div>
+        </a>
+    </div>
+</div>
    <body>
 
 <div class="container">
-    <button id="sabitButon">Rasgele Schvilo Repliği</button>
+    <button id="sabitButon">Rasgele Schvilo Repligi</button>
 	
 	
 	
 	
 	
-
+</div>
 </div>
 
 </body>
@@ -341,7 +432,22 @@ window.onload = getServerStatus;
 
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <p>Bu da başka bir metin paragrafıdır.</p>
+
+
 
 <footer>
 
@@ -349,11 +455,31 @@ window.onload = getServerStatus;
 
 
 
+<div class="switch-container">
+   <label class="switch">
+    <input class="switch__input" type="checkbox" role="switch">
+    <svg class="switch__icon switch__icon--light" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
+        <g fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round">
+            <circle cx="6" cy="6" r="2" />
+        </g>
+    </svg>
+    <svg class="switch__icon switch__icon--dark" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
+        <g fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" transform="rotate(-45,6,6)">
+            <path d="m9,10c-2.209,0-4-1.791-4-4s1.791-4,4-4c.304,0,.598.041.883.105-.995-.992-2.367-1.605-3.883-1.605C2.962.5.5,2.962.5,6s2.462,5.5,5.5,5.5c1.516,0,2.888-.613,3.883-1.605-.285.064-.578.105-.883.105Z"/>
+        </g>
+    </svg>
+    <span class="switch__sr">Dark Mode</span>
+  </label>
+</div>
 
-    <p>Credit</p>
-</footer>
 
 
+
+     <p class="credit">Tüm hakları ShaNexx'e popositlenmiştir. </p>
+
+
+	</footer>
+</div>
 
 	
 
@@ -374,6 +500,17 @@ window.onload = getServerStatus;
 
     // Dark mode değiştiğinde işlevi çağır
     document.getElementById("darkModeSwitch").addEventListener("change", toggleSunIcon);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>
 
 
