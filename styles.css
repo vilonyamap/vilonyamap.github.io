@@ -1673,15 +1673,74 @@ f8cfc9
 
 
 
-
-.redsotne-container {
-    position: relative;
-    
+.redstone-container {
+    position: absolute;
+    top: 9.5%; /* Sayfanın üst kısmına olan uzaklık yüzde cinsinden */
+    right: 25%; /* Sayfanın sağ kısmına olan uzaklık yüzde cinsinden */
 }
 
 .redstone-image {
+    width: 30%; /* Resmin genişliğini container'ın genişliğine eşitler */
+    height: auto; /* Resmin yüksekliğini otomatik ayarlar */
+}
+
+
+
+
+
+.redstone-container2 {
     position: absolute;
-    top: 10%;
-    left: calc(50% + 290px); /* Sağa kaydırma miktarını burada belirleyin */
-    transform: translate(-50%, -50%);
+    top: -4.7%; /* Sayfanın üst kısmına olan uzaklık yüzde cinsinden */
+    right: 350px; /* Sayfanın sağ kısmına olan uzaklık sabit piksel cinsinden */
+    width: 50%; /* Alanın genişliği yüzde cinsinden */
+    height: 50%; /* Alanın yüksekliği yüzde cinsinden */
+        background-color: rgba(255, 0, 0, 0.2); /* Kırmızı bir arka plan rengi */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.redstone-image2 {
+    max-width: 50%; /* Resmin eni container içine sığacak şekilde ayarlanır */
+    max-height: 50%; /* Resmin boyu container içine sığacak şekilde ayarlanır */
+}
+.redstone-image3 {
+    position: relative; /* Resmin konumu sabit kalır */
+    top: 330px; /* Yatayda container'ın üstünden 20 piksel aşağıda */
+    left: -100px; /* Dikeyde container'ın solundan 20 piksel uzakta */
+    width: 100px; /* Resmin genişliği */
+    height: 330px; /* Resmin yüksekliği */
+}
+
+
+.juke-box1 {
+    position: absolute;
+    top: 96%;
+    left: 50%;
+    transform: translateX(-110%);
+    width: 150px;
+    height: 160px;
+    z-index: 10;
+	
+
+}
+
+
+.juke-box2 {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-80%);
+    width: 130px;
+    height: 130px;
+}
+
+.juke-box3 {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-155%);
+    width: 130px;
+    height: 130px;
 }
