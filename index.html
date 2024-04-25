@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+<script>
+  // Kullanıcının ekran genişliğine göre CSS dosyasını yükleyen fonksiyon
+  function loadCSSByScreenWidth() {
+    // Ekran genişliği
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+    // Ekran genişliğine bağlı olarak yüklenecek CSS dosyasının URL'si
+    var cssFileURL = (screenWidth < 768) ? "mobile.css" : "styles.css"; // styles.css olarak güncellendi
+
+    // CSS dosyasını oluşturun ve başlık bölümüne ekleyin
+    var linkElement = document.createElement("link");
+    linkElement.rel = "stylesheet";
+    linkElement.type = "text/css";
+    linkElement.href = cssFileURL;
+    document.head.appendChild(linkElement);
+
+    // Debug mesajını konsola yazdır
+    console.log("Debug: CSS dosyası yüklendi: " + cssFileURL);
+  }
+
+  // Sayfa yüklendiğinde ve yenilendiğinde CSS dosyasını yükle
+  window.onload = loadCSSByScreenWidth;
+  window.onresize = loadCSSByScreenWidth;
+</script>
+
+
+
+
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Harita</title>
@@ -556,7 +589,7 @@ Kurallara uyan her oyuncuya şimdiden teşekkürler. Vilonya'da kalbi iyilik iç
 
 
 
-     <p class="credit">Tüm hakları ShaNexx'e popositlenmiştir. </p>
+     <p class="credit">Tüm hakları ShaNexx'e popoşitlenmiştir. </p>
 
 
 	</footer>
