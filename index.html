@@ -62,6 +62,32 @@ function loadResourcesByScreenWidth() {
 window.addEventListener('DOMContentLoaded', loadResourcesByScreenWidth); // Sayfa yüklendiğinde
 window.addEventListener('resize', loadResourcesByScreenWidth); // Ekran boyutu değiştiğinde
 
+
+
+
+//uyari
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 
@@ -162,7 +188,7 @@ sunucuDurumuMetniElement.style.color = data.online ? 'green' : 'red';
             if (data.players && data.players.online && data.players.max) {
                 oyuncuSayisiText = `Oyuncu Sayısı: ${data.players.online}/${data.players.max}`;
             } else {
-                oyuncuSayisiText = 'Oyuncu Sayısı: 0';
+                oyuncuSayisiText = 'Oyuncu Sayısı: 0/100';
             }
             oyuncuSayisiMetniElement.textContent = oyuncuSayisiText;
 
@@ -480,7 +506,7 @@ Kurallara uyan her oyuncuya şimdiden teşekkürler. Vilonya'da kalbi iyilik iç
       <img src='megas0xlr.png' alt=''>
       <img src='MeroTR.png' alt=''>
       <img src='MightyManlyMe.png' alt=''>
-	 <img src='SV13.png' alt=''>
+	  <img src='SV13.png' alt=''>
       <img src='TARHAN_16.png' alt=''>
       <img src='v4t0z.png' alt=''>
 	  

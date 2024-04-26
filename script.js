@@ -301,6 +301,48 @@ function openLink() {
 
 
 
+// Ekran çözünürlüğünü kontrol etme ve uyarı penceresini gösterme
+function checkResolution() {
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    // Belirlenen eşik (örneğin, 1920x1080)
+    var thresholdWidth = 1920;
+    var thresholdHeight = 1080;
+
+    // Ekran çözünürlüğü eşikten büyükse
+    if (screenWidth > thresholdWidth && screenHeight > thresholdHeight) {
+        var alertBox = document.createElement('div');
+        alertBox.id = 'resolutionAlert';
+        alertBox.textContent = 'Standart çözünürlükten daha yüksek bir çözünürlüğe sahipsiniz, bazı boyutlandırma hataları olabilir.';
+        alertBox.style.position = 'absolute';
+        alertBox.style.left = '50px'; // Başlangıçta sol dışarıda başlayacak
+        alertBox.style.top = '95%';
+        alertBox.style.transform = 'translateY(-50%)';
+        alertBox.style.backgroundColor = '#f8d7da'; // Kırmızımsı bir arka plan rengi
+        alertBox.style.padding = '20px';
+        alertBox.style.border = '2px solid #721c24'; // Koyu kırmızı kenarlık
+        alertBox.style.borderLeft = 'none'; // Sol kenarlık yok
+        alertBox.style.borderRadius = '0 5px 5px 0'; // Sağ üst köşe yuvarlatma
+        alertBox.style.fontWeight = 'bold';
+        alertBox.style.fontSize = '18px';
+        alertBox.style.color = '#721c24'; // Koyu kırmızı metin rengi
+        alertBox.style.transition = 'left 0.5s ease-in-out'; // Kaydırma animasyonu
+        document.body.appendChild(alertBox);
+
+        // Uyarı penceresini ekrana kaydır
+        alertBox.style.left = '10px';
+
+        // Belirli bir süre sonra uyarı penceresini gizle
+        setTimeout(function() {
+            alertBox.style.left = '-1300px'; // Uyarı penceresini dışarı kaydır
+        }, 10000); // 10 saniye sonra kaybol
+    }
+}
+
+// Sayfa yüklendiğinde ve ekran boyutu değiştiğinde ekran çözünürlüğünü kontrol et
+window.addEventListener('DOMContentLoaded', checkResolution);
+window.addEventListener('resize', checkResolution);
 
 
 
@@ -394,3 +436,19 @@ button.addEventListener('click', function() {
         }, 300); // 0.3 saniye sonra
     }
 });
+
+
+
+ // Duyurular butonuna tıklandığında yönlendirme işlemi gerçekleştir (yeni sekmede aç)
+    document.getElementById("duyurular").addEventListener("click", function() {
+        // Belirtilen URL'yi yeni sekmede aç
+        window.open("https://discord.com/channels/1033476561648767066/1210299685714272297", "_blank");
+    });
+	
+	
+	 // Yama Notları butonuna tıklandığında yönlendirme işlemi gerçekleştir (yeni sekmede aç)
+    document.getElementById("yamanotlari").addEventListener("click", function() {
+        // Belirtilen URL'yi yeni sekmede aç
+        window.open("https://discord.com/channels/1033476561648767066/1229785429545324586", "_blank");
+    });
+	
