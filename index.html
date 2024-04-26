@@ -43,8 +43,8 @@ function loadResourcesByScreenWidth() {
     // Debug mesajını konsola yazdır
     console.log("Debug: CSS dosyası yüklendi: " + cssFileURL);
 
-    // Mobil eşik altındaysa, HTML dosyasını yükle
-    if (screenWidth < mobileThreshold) {
+    // Mobil eşik altındaysa ve HTML dosyası tanımlıysa, HTML dosyasını yükle
+    if (screenWidth < mobileThreshold && htmlFileURL) {
         fetch(htmlFileURL)
             .then(response => response.text())
             .then(html => {
@@ -61,7 +61,6 @@ function loadResourcesByScreenWidth() {
 // Sayfa yüklendiğinde ve ekran boyutu değiştiğinde dosyaları yükle
 window.addEventListener('DOMContentLoaded', loadResourcesByScreenWidth); // Sayfa yüklendiğinde
 window.addEventListener('resize', loadResourcesByScreenWidth); // Ekran boyutu değiştiğinde
-
 
 </script>
 
