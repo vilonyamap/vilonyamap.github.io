@@ -234,6 +234,6 @@ container.addEventListener("mousemove", function(event) {
     if (!isDraggable && isClickable) {
         container.style.cursor = "pointer";
     } else {
-        container.style.cursor = "default";
+        container.style.cursor = "grab";
     }
 });

@@ -62,6 +62,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         resetMapSettings(); // Yakınlaştırma, uzaklaştırma ve kaydırma ayarlarını sıfırla
     });
+	
+	
+	
+	
+	
 
     function resetMapSettings() {
         mapContainer.scrollLeft = 0;
@@ -291,3 +296,101 @@ function openLink() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const button = document.getElementById('sabitButon');
+const redstoneImg = document.querySelector('.redstone-container img');
+const redstoneortaImg = document.querySelector('.redstone-container2 .redstone-image2');
+const redstoneorta2Img = document.querySelector('.redstone-container2 .redstone-image3');
+const jukeboxGif1 = document.querySelector('.juke-box2');
+const jukeboxGif2 = document.querySelector('.juke-box3');
+
+// Ses dosyalarının yolu
+const audioFiles = [
+    'replik/Aga.mp3',
+    'replik/angara.mp3',
+    'replik/aramizda.mp3',
+    'replik/askinolayim.mp3',
+    'replik/AyBune.mp3',
+    'replik/bakisine.mp3',
+    'replik/bir.mp3',
+    'replik/heriliski.mp3',
+    'replik/koylu.mp3',
+    'replik/memis.mp3',
+    'replik/op.mp3',
+    'replik/takipci.mp3',
+    'replik/terbiyesiz.mp3',
+    'replik/yayin.mp3'
+];
+
+let lastPlayedAudios = []; // Son çalınan seslerin geçmişini tutacak dizi
+const maxHistorySize = 7; // Geçmişte saklanacak son ses sayısı
+
+let isAudioPlaying = false; // Aktif ses kontrolü
+
+function getRandomUniqueAudio() {
+    // Rasgele bir ses seç
+    let randomAudio;
+    do {
+        const randomIndex = Math.floor(Math.random() * audioFiles.length);
+        randomAudio = audioFiles[randomIndex];
+    } while (lastPlayedAudios.includes(randomAudio)); // Daha önce çalınan sesleri kontrol et
+
+    // Geçmişte çalınan sesleri sakla
+    lastPlayedAudios.push(randomAudio);
+    if (lastPlayedAudios.length > maxHistorySize) {
+        lastPlayedAudios.shift(); // Geçmiş boyutunu kontrol et
+    }
+
+    return new Audio(randomAudio);
+}
+
+button.addEventListener('click', function() {
+    if (!isAudioPlaying) { // Aktif ses yoksa
+        isAudioPlaying = true; // Ses çalınıyor olarak işaretle
+
+        // İlk resmin değişimi
+        redstoneImg.src = 'redstone_working1.png';
+        // İkinci resmin değişimi
+        setTimeout(() => {
+            redstoneortaImg.src = 'redstoneorta_working1.png';
+            // Üçüncü resmin değişimi
+            setTimeout(() => {
+                redstoneorta2Img.src = 'redstoneorta2_working2.png';
+
+                // Rasgele ve benzersiz sesi çal
+                const audio = getRandomUniqueAudio();
+                audio.play(); // Ses çal
+
+                // Ses çalma tamamlandığında
+                audio.onended = function() {
+                    // Resimlerin orijinal haline dönmesi
+                    redstoneImg.src = 'redstone.png';
+                    redstoneortaImg.src = 'redstoneorta.png';
+                    redstoneorta2Img.src = 'redstoneorta2.png';
+                    isAudioPlaying = false; // Ses çalınmıyor olarak işaretle
+
+                    // Gifleri gizle
+                    jukeboxGif1.style.display = 'none';
+                    jukeboxGif2.style.display = 'none';
+                };
+
+                // Gifleri görünür hale getir
+                jukeboxGif1.style.display = 'inline-block';
+                jukeboxGif2.style.display = 'inline-block';
+            }, 300); // 0.3 saniye sonra
+        }, 300); // 0.3 saniye sonra
+    }
+});

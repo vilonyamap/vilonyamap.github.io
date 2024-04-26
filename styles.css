@@ -242,6 +242,32 @@ p.credit::after {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .galeri-container {
   --space: 2rem;
   display: grid;
@@ -1105,6 +1131,53 @@ input:checked + .slider:before {
 /* İstediğiniz zaman boyutunu, konumunu ve diğer özelliklerini değiştirebilirsiniz */
 
 
+#duyurular {
+    width: 300px; /* Genişlik */
+    height: 50px; /* Yükseklik */
+    padding: 10px 99px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    z-index: 9998;
+    position: absolute;
+    right: 25%;
+    bottom: 1240px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
+    background-image: url('button72.png');
+    background-size: 300px 50px; /* Arka plan resminin boyutunu ayarla */
+    transition: background-image 0.2s ease; /* Geçiş efekti için */
+	line-height: 10px; /* Yazıyı dikey olarak ortaya hizala */	
+    text-align: center; /* Texti uzunlamasına ortala */
+    text-shadow: 2px 5px 1px rgba(0, 0, 0, 1); /* 2px sağa ve 2px aşağıya gölge ekle, 4px bulanıklık, 0.5 opaklık */
+	white-space: nowrap; /* Yazının alt alta değil yan yana yazılmasını sağla */
+    display: flex; /* Flex kutusu oluştur */
+    justify-content: center; /* İçeriği yatay olarak ortala */
+    align-items: center; /* İçeriği dikey olarak ortala */
+	font-family: 'MinecraftRegular', sans-serif; /* Minecraft fontunu ata */
+	
+}
+
+#duyurular span {
+    width: 100%; /* Yazının genişliğini butonun tam genişliği yap */
+}
+
+@font-face {
+    font-family: 'MinecraftBold';
+    src: url('font/MinecraftBold-nMK1.otf') format('opentype');
+}
+
+#duyurular:active {
+    transform: translateY(2px); /* Y ekseni boyunca 2 piksel aşağı kaydırma */
+}
+
+
+#duyurular:hover {
+    background-image: url('button72hover.png');
+}
+/* İstediğiniz zaman boyutunu, konumunu ve diğer özelliklerini değiştirebilirsiniz */
 
 
 
@@ -1696,7 +1769,7 @@ f8cfc9
     right: 350px; /* Sayfanın sağ kısmına olan uzaklık sabit piksel cinsinden */
     width: 50%; /* Alanın genişliği yüzde cinsinden */
     height: 40%; /* Alanın yüksekliği yüzde cinsinden */
-        background-color: rgba(255, 0, 0, 0.2); /* Kırmızı bir arka plan rengi */
+        background-color: rgba(0, 0, 0, 0); /* Kırmızı bir arka plan rengi */
 
     display: flex;
     justify-content: center;
@@ -1746,4 +1819,19 @@ f8cfc9
     transform: translateX(-155%);
     width: 130px;
     height: 130px;
+}
+
+
+
+-animasyon
+
+.redstone-container img {
+    transition: transform 0.5s ease; /* Geçiş efekti */
+}
+.redstone-container2 img {
+    transition: transform 0.5s ease; /* Geçiş efekti */
+}
+.juke-box2,
+.juke-box3 {
+    display: none;
 }

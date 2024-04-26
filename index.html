@@ -4,15 +4,40 @@
 
 
 <script>
-  // Kullanıcının ekran genişliğine göre CSS dosyasını yükleyen fonksiyon
-  function loadCSSByScreenWidth() {
+// Kullanıcının ekran genişliğine göre CSS dosyasını yükleyen fonksiyon
+function loadCSSByScreenWidth() {
     // Ekran genişliği
     var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-    // Ekran genişliğine bağlı olarak yüklenecek CSS dosyasının URL'si
-    var cssFileURL = (screenWidth < 768) ? "mobile.css" : "styles.css"; // styles.css olarak güncellendi
+    // Belirlenen çözünürlük eşiği
+    var highResolutionThreshold = 3000;
 
-    // CSS dosyasını oluşturun ve başlık bölümüne ekleyin
+    // CSS dosyasının URL'si
+    var cssFileURL;
+
+    // Ekran genişliğine göre hangi CSS dosyasının yükleneceğini belirle
+    if (screenWidth < 768) {
+        cssFileURL = "mobile.css";
+    } else if (screenWidth >= highResolutionThreshold) {
+        cssFileURL = "32styles.css";
+    } else {
+        cssFileURL = "styles.css";
+    }
+
+    // Önceden yüklenmiş CSS dosyasını bulup kaldır
+    var existingMobileCSS = document.querySelector('link[href="mobile.css"]');
+    if (existingMobileCSS && cssFileURL !== "mobile.css") {
+        existingMobileCSS.remove();
+        console.log("Debug: mobile.css dosyası kaldırıldı.");
+    }
+
+    var existingHighResCSS = document.querySelector('link[href="32styles.css"]');
+    if (existingHighResCSS && cssFileURL !== "32styles.css") {
+        existingHighResCSS.remove();
+        console.log("Debug: 32styles.css dosyası kaldırıldı.");
+    }
+
+    // Yeni CSS dosyasını oluştur ve başlık bölümüne ekle
     var linkElement = document.createElement("link");
     linkElement.rel = "stylesheet";
     linkElement.type = "text/css";
@@ -21,12 +46,17 @@
 
     // Debug mesajını konsola yazdır
     console.log("Debug: CSS dosyası yüklendi: " + cssFileURL);
-  }
+}
 
-  // Sayfa yüklendiğinde ve yenilendiğinde CSS dosyasını yükle
-  window.onload = loadCSSByScreenWidth;
-  window.onresize = loadCSSByScreenWidth;
+// Sayfa yüklendiğinde ve ekran boyutu değiştiğinde CSS dosyasını yükle
+window.addEventListener('DOMContentLoaded', loadCSSByScreenWidth); // Sayfa yüklendiğinde
+window.addEventListener('resize', loadCSSByScreenWidth); // Ekran boyutu değiştiğinde
+
+
+
+
 </script>
+
 
 
 
@@ -377,11 +407,10 @@ window.onload = getServerStatus;
 <button id="profileWindowButton" style="position: fixed; top: 20px; right: 20px;">Profil Penceresini Aç</button>
 <div id="icon-container"></div>
 
-<p>Bu bir metin paragrafıdır.</p>
+<p>.</p>
 
 <div id="highlightedArea">
 
-    Bu alan farklı bir arka plan rengine sahip.
 	
 	
 <img src="market.png" alt="Market" class="market-image normal-image" onclick="openLink()">
@@ -420,7 +449,7 @@ Kurallara uyan her oyuncuya şimdiden teşekkürler. Vilonya'da kalbi iyilik iç
 	
 </body>
 
-	İçeriğinizi buraya ekleyin</div>
+	</div>
 	
 	  <div id="vilohiBackground"></div>
 <div class="galeri-container">
@@ -521,7 +550,8 @@ Kurallara uyan her oyuncuya şimdiden teşekkürler. Vilonya'da kalbi iyilik iç
     <button id="yamanotlari">Yama Notları</button>
 	
 	
-	
+	<div class="container">
+    <button id="duyurular">Duyurular</button>
 	
 	
 	
@@ -559,7 +589,7 @@ Kurallara uyan her oyuncuya şimdiden teşekkürler. Vilonya'da kalbi iyilik iç
 
 
 
-<p>Bu da başka bir metin paragrafıdır.</p>
+<p></p>
 
 
 

@@ -82,7 +82,7 @@ header img {
 }
 
 #map-container {
-    margin-top: 5px;
+    margin-top: -55px;
     overflow: hidden; /* Harita dışına taşan kısımları kesmek için */
     width: 100%;
     height: 95vh; /* Ekran yüksekliğinin %80'ini kaplar */
@@ -109,7 +109,7 @@ header img {
 #toggleButton {
     width: 100px; /* Genişlik */
     height: 50px; /* Yükseklik */
-    padding: 2px; /* İç içe boşluklar */
+    padding: 2px 2px; /* İç içe boşluklar */
     background-color: #007bff; /* Arkaplan rengi */
     color: white; /* Metin rengi */
     border: none; /* Kenar çizgisi yok */
@@ -118,24 +118,24 @@ header img {
     font-size: 16px; /* Font boyutu */
     outline: none; /* Dış çizgi yok */
     z-index: 9999; /* Diğer içeriklerin üzerinde göstermek için */
-    position: absolute; /* Sabit pozisyon */
-    top: 100%; /* Yükseklik */
-    left: 50%; /* Sol kenara göre yatay konum */
-    transform: translate(-50%, -50%); /* Dikey ve yatay olarak ortala */
+    position: fixed; /* Sabit pozisyon */
+    top: 80px; /* Yukarıdan mesafe */
+    right: 20px; /* Sağdan mesafe */
     background-image: url('button72minik.png'); /* Arka plan resmi */
     background-size: 100px 50px; /* Arka plan resminin boyutu */
     transition: background-image 0.2s ease; /* Geçiş efekti */
-    line-height: 50px; /* Yazı yüksekliği buton yüksekliğiyle aynı olacak */
+    line-height: 10px; /* Yazı yüksekliği */
     text-align: center; /* Metni ortala */
     text-shadow: 2px 5px 1px rgba(0, 0, 0, 1); /* Metin gölgesi */
     white-space: nowrap; /* Alt alta değil yan yana yazdır */
+    display: flex; /* Flex kutusu oluştur */
+    justify-content: center; /* İçeriği yatay olarak ortala */
+    align-items: center; /* İçeriği dikey olarak ortala */
     font-family: 'MinecraftBold', sans-serif; /* Font ailesi */
 }
 
 #toggleButton span {
     width: 100%; /* Yazının genişliğini butonun tam genişliği yap */
-    display: inline-block; /* Yazıyı blok element yap */
-    vertical-align: middle; /* Dikey hizalama */
 }
 
 @font-face {
@@ -151,10 +151,6 @@ header img {
     background-image: url('button72minikhover.png'); /* Hover efekti: Arka plan resmini değiştirme */
 }
 
-
-
-
-/////////////MOBILE
 
 
 footer {
@@ -198,7 +194,7 @@ p.credit::after {
     bottom: -1550px; /* İstediğiniz mesafeyi burada belirtin */
 	right: 0; /* Sağ köşeye sabitleme */
     width: 100%;
-    height: 1590px; /* Örnek olarak 100 piksel yüksekliği */
+    height: 1680px; /* Örnek olarak 100 piksel yüksekliği */
     background-color: #f8cfc9; /* Örnek olarak sarı */
     z-index: 0;
 	 /* İstenen diğer stiller buraya eklenecek */
@@ -234,12 +230,38 @@ p.credit::after {
     bottom: 0; /* Aşağıya hizala */
     left: 0; /* Sola hizala */
     background-image: url('vilohi.png'); /* vilohi.png'yi arka plan olarak ekle */
-	background-size: 270px 330px; /* Örnek boyut (genişlik ve yükseklik) */
+	background-size: 570px 630px; /* Örnek boyut (genişlik ve yükseklik) */
     background-position: top right; /* Sağ üst köşeye hizalama */
     background-repeat: no-repeat; /* Tekrar etmeyecek şekilde ayarla */
-    background-position: calc(100% - 0px) 500px; /* Sağ üst köşeye 50 piksel sol ve 20 piksel aşağıda hizalama */
+    background-position: calc(100% - 0px) 245px; /* Sağ üst köşeye 50 piksel sol ve 20 piksel aşağıda hizalama */
     z-index: 0; /* vilohi.png'nin z-index değerini belirle */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1073,8 +1095,8 @@ input:checked + .slider:before {
     outline: none;
     z-index: 9998;
     position: absolute;
-    right: 25%;
-    bottom: 1320px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
+    right: 15%;
+    bottom: 1390px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
     background-image: url('button72.png');
     background-size: 300px 50px; /* Arka plan resminin boyutunu ayarla */
     transition: background-image 0.2s ease; /* Geçiş efekti için */
@@ -1112,7 +1134,52 @@ input:checked + .slider:before {
 
 
 
+#duyurular {
+    width: 300px; /* Genişlik */
+    height: 50px; /* Yükseklik */
+    padding: 10px 99px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    z-index: 9998;
+    position: absolute;
+    right: 15%;
+    bottom: 1300px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
+    background-image: url('button72.png');
+    background-size: 300px 50px; /* Arka plan resminin boyutunu ayarla */
+    transition: background-image 0.2s ease; /* Geçiş efekti için */
+	line-height: 10px; /* Yazıyı dikey olarak ortaya hizala */	
+    text-align: center; /* Texti uzunlamasına ortala */
+    text-shadow: 2px 5px 1px rgba(0, 0, 0, 1); /* 2px sağa ve 2px aşağıya gölge ekle, 4px bulanıklık, 0.5 opaklık */
+	white-space: nowrap; /* Yazının alt alta değil yan yana yazılmasını sağla */
+    display: flex; /* Flex kutusu oluştur */
+    justify-content: center; /* İçeriği yatay olarak ortala */
+    align-items: center; /* İçeriği dikey olarak ortala */
+	font-family: 'MinecraftRegular', sans-serif; /* Minecraft fontunu ata */
+	
+}
 
+#duyurular span {
+    width: 100%; /* Yazının genişliğini butonun tam genişliği yap */
+}
+
+@font-face {
+    font-family: 'MinecraftBold';
+    src: url('font/MinecraftBold-nMK1.otf') format('opentype');
+}
+
+#duyurular:active {
+    transform: translateY(2px); /* Y ekseni boyunca 2 piksel aşağı kaydırma */
+}
+
+
+#duyurular:hover {
+    background-image: url('button72hover.png');
+}
 
 
 
@@ -1156,8 +1223,8 @@ input:checked + .slider:before {
     outline: none;
     z-index: 9998;
     position: absolute;
-    right: 25%;
-    bottom: 1400px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
+    right: 15%;
+    bottom: 1480px; /* İstediğiniz yükseklik değerini ayarlayabilirsiniz */
     background-image: url('button72.png');
     background-size: 300px 50px; /* Arka plan resminin boyutunu ayarla */
     transition: background-image 0.2s ease; /* Geçiş efekti için */
@@ -1193,66 +1260,95 @@ input:checked + .slider:before {
 
 
 
-
-
-
 #sunucuResmi {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px !important;
-    height: 80px !important;
+    position: absolute; /* Konumlandırma için */
+    left: 30 !important; /* Sol kenardan 100 piksel uzaklıkta */
+    top: 25px !important; /* Üst kenardan 150 piksel uzaklıkta */
+    width: 80px !important; /* Genişlik */
+    height: 80px !important; /* Yükseklik */
 }
 
 #oyuncuSayisi {
-    position: relative;
-    top: -23px;
+    position: relative; /* Diğer öğelerle pozisyonunu ayarlamak için */
+    top: -23px; /* Yukarıya doğru 10 piksel kaydır */
 }
 
 #sunucuDurumu {
-    position: relative;
-    top: -15px;
+    position: relative; /* Diğer öğelerle pozisyonunu ayarlamak için */
+    top: -15px; /* Yukarıya doğru 10 piksel kaydır */
 }
 
 #oyuncuSimgeleri img {
-    width: 32px;
-    height: 32px;
-    margin: 2px;
+    width: 32px; /* İstenen genişlik */
+    height: 32px; /* İstenen yükseklik */
+    margin: 2px; /* İstenen kenar boşluğu */
 }
-
 #oyuncuSimgeleri {
     position: absolute;
     top:  78px;
     left: 95px;
 }
 
+
 @font-face {
     font-family: 'MinecraftRegular';
-    src: url('fonts/MinecraftRegular-Bmg3.otf') format('opentype');
+    src: url('fonts/MinecraftRegular-Bmg3.otf') format('opentype'); /* MinecraftRegular fontunun dosya yolunu belirtin */
 }
 
 #sunucuDurumu, #oyuncuSayisi {
-    font-family: 'MinecraftRegular', sans-serif;
+    font-family: 'MinecraftRegular', sans-serif; /* MinecraftRegular fontunu belirtin */
 }
 
 .minecraft-fontregular.sunucu-aktif {
     color: green !important;
 }
-
 #sunucuDurumuMetni {
-    color: green;
+    color: green; /* Yeşil renk */
 }
 
 
-///MOBILE
 
 
 
+#uyeOlButonAlani {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
 
+#uyeOlButon {
+    width: 178px;
+    height: 50px;
+    padding: 1px 1px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    z-index: 9999;
+    position: fixed;
+    top: 15px; /* Sağ üst köşeye sabitleme */
+    right: 20px; /* Sağ üst köşeye sabitleme */
+    background-image: url('button72minik.png');
+	background-size: cover; /* Arka plan resmini kaplayacak şekilde boyutlandırma */
+    background-position: center; /* Arka plan resmini ortalamak için */
+    background-size: 182px 50px;
+    transition: background-image 0.2s ease;
+    line-height: 10px;
+    text-align: center;
+    text-shadow: 2px 5px 1px rgba(0, 0, 0, 1);
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'MinecraftRegular', sans-serif;
+}
 
 #uyeOlButon span {
-    width: 100%; /* Yazının genişliğini butonun tam genişliği yap */
+    width: 100%;
 }
 
 #uyeOlButon:hover {
@@ -1263,7 +1359,8 @@ input:checked + .slider:before {
     transform: translateY(2px); /* Y ekseni boyunca 2 piksel aşağı kaydırma */
 }
 
-//MOBILE
+
+
 
 /* Overlay */
 #overlay {
@@ -1282,9 +1379,9 @@ input:checked + .slider:before {
 #uyeOlPencere {
   display: none;
   position: fixed;
-  top: 40%;
-  left: 30%;
-  transform: translate(-10%, -10%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 10px;
   background-color: white;
   border-radius: 5px;
@@ -1303,7 +1400,7 @@ input:checked + .slider:before {
 
 
 #uyeOlResim {
-  width: 400px; /* Resmin genişliği */
+  width: 900px; /* Resmin genişliği */
   height: auto; /* Genişlik oranına göre otomatik yükseklik */
   margin: 10px auto; /* Dikey kenar boşluğu ayarlamak için */
   display: block; /* Resmi blok öğe olarak ayarla */
@@ -1489,16 +1586,13 @@ body:has(.switch__input:checked) {
 
 
 
-.highlightedArea img {
-    width: 200px !important; /* Boyutlandırma için width özelliği */
-    /* Diğer stiller */
-}
+
 
 
 .highlightedArea {
     position: absolute;
-    bottom: 945px;
-    left: 220px;
+    bottom: 910px;
+    left: 415px;
 	z-index: 9999; /* Yüksek bir değer vererek diğer öğelerin üzerine çıkmasını sağlayabilirsiniz */
 
 }
@@ -1539,7 +1633,7 @@ body:has(.switch__input:checked) {
     width: 13px;
     height: 13px;
     top: -50px;
-    left: 55%;
+    left: 48%;
     z-index: 5;
     border-radius: 50% 50%;
     background: #964B00;
@@ -1599,27 +1693,24 @@ body:has(.switch__input:checked) {
 }
 
 
+
 .normal-image {
     position: absolute;
     bottom: 1070px; /* Alt kenardan 270 piksel yukarıda */
-    left: 230px; /* Sol kenardan 110 piksel içeride */
+    left: 310px; /* Sol kenardan 110 piksel içeride */
     z-index: 9999; /* Diğer öğelerin üstünde olmasını sağlar */
     transition: opacity 1s ease; /* Geçiş efekti ekleyin */
     opacity: 1; /* Normal durumda görünür yapın */
-    width: 300px; /* Resmin genişliği */
-    height: auto; /* Genişliğe göre otomatik yükseklik */
 }
 
 
 .hover-image {
     position: absolute;
     bottom: 1070px; /* Alt kenardan 270 piksel yukarıda */
-    left: 230px; /* Sol kenardan 110 piksel içeride */
+    left: 310px; /* Sol kenardan 110 piksel içeride */
     z-index: 9999; /* Diğer öğelerin üstünde olmasını sağlar */
     transition: opacity 0.3s ease; /* Geçiş efekti ekleyin */
     opacity: 0; /* Hover durumunda görünmez yapın */
-    width: 300px; /* Resmin genişliği */
-    height: auto; /* Genişliğe göre otomatik yükseklik */
 }
 
 .hover-image:hover {
@@ -1631,31 +1722,10 @@ body:has(.switch__input:checked) {
 .market-image:hover ~ .normal-image {
     opacity: 0; /* Hover durumunda normal resmi görünmez yapın */
 }
-
 ///////////////MC BUTON 
 
 f8cfc9
 
-#sabitAlan {
-    position: absolute !important;
-    top: 190% !important;
-    left: 150% !important;
-    transform: translate(-50%, -50%) !important;
-    background-color: #ffafdd !important;
-    color: rgb(6, 6, 6) !important;
-    padding: 1rem !important;
-    border-radius: 15px !important;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) !important;
-    color: white !important;
-    padding: 10px !important;
-    border-radius: 5px !important;
-    z-index: 9999 !important;
-}
-
-#sunucuDurumu,
-#oyuncuSayisi {
-    margin-left: 10px !important;
-}
 
 
 
@@ -1668,7 +1738,7 @@ f8cfc9
 #minecraft-image {
   position: absolute; /* Resmi sabitlemek için mutlak pozisyon */
   left: -50px; /* Sol kenardan uzaklık */
-  bottom: 750px; /* Alt kenardan uzaklık */
+  bottom: 780px; /* Alt kenardan uzaklık */
   z-index: 9999; /* Diğer öğelerin üstünde olması için */
   transform: rotateY(180deg); /* Resmi yatayda flip etmek */
 }
@@ -1678,8 +1748,8 @@ f8cfc9
 
 .redstone-container {
     position: absolute;
-    top: 9.5%; /* Sayfanın üst kısmına olan uzaklık yüzde cinsinden */
-    right: 25%; /* Sayfanın sağ kısmına olan uzaklık yüzde cinsinden */
+    top: 9.8%; /* Sayfanın üst kısmına olan uzaklık yüzde cinsinden */
+    right: 15%; /* Sayfanın sağ kısmına olan uzaklık yüzde cinsinden */
 }
 
 .redstone-image {
@@ -1694,10 +1764,10 @@ f8cfc9
 .redstone-container2 {
     position: absolute;
     top: -0%; /* Sayfanın üst kısmına olan uzaklık yüzde cinsinden */
-    right: 350px; /* Sayfanın sağ kısmına olan uzaklık sabit piksel cinsinden */
+    right: 10px; /* Sayfanın sağ kısmına olan uzaklık sabit piksel cinsinden */
     width: 50%; /* Alanın genişliği yüzde cinsinden */
     height: 40%; /* Alanın yüksekliği yüzde cinsinden */
-        background-color: rgba(255, 0, 0, 0.2); /* Kırmızı bir arka plan rengi */
+        background-color: rgba(0, 0, 0, 0); /* Kırmızı bir arka plan rengi */
 
     display: flex;
     justify-content: center;
@@ -1747,4 +1817,18 @@ f8cfc9
     transform: translateX(-155%);
     width: 130px;
     height: 130px;
+}
+
+
+-animasyon
+
+.redstone-container img {
+    transition: transform 0.5s ease; /* Geçiş efekti */
+}
+.redstone-container2 img {
+    transition: transform 0.5s ease; /* Geçiş efekti */
+}
+.juke-box2,
+.juke-box3 {
+    display: none;
 }
