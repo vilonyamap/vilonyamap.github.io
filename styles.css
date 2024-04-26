@@ -155,7 +155,7 @@ header img {
 
 footer {
     position: absolute; /* Sabit konum */
-	bottom: -1620px; /* Sayfanın altından 50 piksel yukarıda */
+	bottom: -70px; /* Sayfanın altından 50 piksel yukarıda */
     left: 0; /* Sol kenara hizala */
     width: 100%; /* Tam genişlik */
     background-color: #333; /* Arka plan rengi */

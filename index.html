@@ -5,36 +5,32 @@
 
 <script>
 // Kullanıcının ekran genişliğine göre CSS dosyasını yükleyen fonksiyon
-function loadCSSByScreenWidth() {
+// Kullanıcının ekran genişliğine göre CSS ve HTML dosyalarını yükleyen fonksiyon
+function loadResourcesByScreenWidth() {
     // Ekran genişliği
     var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-    // Belirlenen çözünürlük eşiği
-    var highResolutionThreshold = 3000;
+    // Mobil eşiği belirle (örneğin, 768 piksel)
+    var mobileThreshold = 768;
 
-    // CSS dosyasının URL'si
-    var cssFileURL;
+    // Dosya URL'leri
+    var cssFileURL, htmlFileURL;
 
-    // Ekran genişliğine göre hangi CSS dosyasının yükleneceğini belirle
-    if (screenWidth < 768) {
-        cssFileURL = "mobile.css";
-    } else if (screenWidth >= highResolutionThreshold) {
-        cssFileURL = "32styles.css";
+    // Ekran genişliğine göre hangi dosyaların yükleneceğini belirle
+    if (screenWidth < mobileThreshold) {
+        cssFileURL = "styles.css"; // Mobil eşiğin altında standart CSS dosyası
+        htmlFileURL = "mobileindex.html"; // Mobil eşiğin altında HTML dosyası
+    } else if (screenWidth >= 3000) {
+        cssFileURL = "32styles.css"; // Ekran çözünürlüğü 3000 ve üstündeyse özel CSS dosyası
     } else {
-        cssFileURL = "styles.css";
+        cssFileURL = "styles.css"; // Varsayılan standart CSS dosyası
     }
 
     // Önceden yüklenmiş CSS dosyasını bulup kaldır
-    var existingMobileCSS = document.querySelector('link[href="mobile.css"]');
-    if (existingMobileCSS && cssFileURL !== "mobile.css") {
-        existingMobileCSS.remove();
-        console.log("Debug: mobile.css dosyası kaldırıldı.");
-    }
-
-    var existingHighResCSS = document.querySelector('link[href="32styles.css"]');
-    if (existingHighResCSS && cssFileURL !== "32styles.css") {
-        existingHighResCSS.remove();
-        console.log("Debug: 32styles.css dosyası kaldırıldı.");
+    var existingCSS = document.querySelector('link[href*="styles.css"]');
+    if (existingCSS) {
+        existingCSS.remove();
+        console.log("Debug: CSS dosyası kaldırıldı.");
     }
 
     // Yeni CSS dosyasını oluştur ve başlık bölümüne ekle
@@ -46,13 +42,25 @@ function loadCSSByScreenWidth() {
 
     // Debug mesajını konsola yazdır
     console.log("Debug: CSS dosyası yüklendi: " + cssFileURL);
+
+    // Mobil eşik altındaysa, HTML dosyasını yükle
+    if (screenWidth < mobileThreshold) {
+        fetch(htmlFileURL)
+            .then(response => response.text())
+            .then(html => {
+                // İçeriği göstermek için HTML dosyasını ana sayfaya ekle
+                document.body.innerHTML = html;
+                console.log("Debug: HTML dosyası yüklendi: " + htmlFileURL);
+            })
+            .catch(error => {
+                console.error("HTML dosyası yüklenirken hata oluştu:", error);
+            });
+    }
 }
 
-// Sayfa yüklendiğinde ve ekran boyutu değiştiğinde CSS dosyasını yükle
-window.addEventListener('DOMContentLoaded', loadCSSByScreenWidth); // Sayfa yüklendiğinde
-window.addEventListener('resize', loadCSSByScreenWidth); // Ekran boyutu değiştiğinde
-
-
+// Sayfa yüklendiğinde ve ekran boyutu değiştiğinde dosyaları yükle
+window.addEventListener('DOMContentLoaded', loadResourcesByScreenWidth); // Sayfa yüklendiğinde
+window.addEventListener('resize', loadResourcesByScreenWidth); // Ekran boyutu değiştiğinde
 
 
 </script>
