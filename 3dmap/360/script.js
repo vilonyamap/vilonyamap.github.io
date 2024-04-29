@@ -3,16 +3,16 @@ let sphereMesh;
 
 function init() {
     // Kamera oluşturma
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.set(0, 0, 0);
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
+    camera.position.set(0, 0, 2); // Kamerayı uzaklaştırarak görüntüyü daha küçük yapar
 
     // Sahne oluşturma
     scene = new THREE.Scene();
 
     // Sphere oluşturma
-    const geometry = new THREE.SphereGeometry(500, 60, 40);
-    geometry.scale(-1, 1, 1);
-    const texture = new THREE.TextureLoader().load('cami360.png');
+    const geometry = new THREE.SphereGeometry(1000, 60, 40);
+    geometry.scale(-1, 1, 1); // Sphere'ü içe doğru döndürme
+    const texture = new THREE.TextureLoader().load('cami360.png'); // 360 derece görüntünün yüklenmesi
     const material = new THREE.MeshBasicMaterial({ map: texture });
     sphereMesh = new THREE.Mesh(geometry, material);
     scene.add(sphereMesh);
@@ -28,6 +28,7 @@ function init() {
     document.addEventListener('mouseup', onMouseUp);
 }
 
+// Fare hareketleri için olay işleyicileri
 let isDragging = false;
 let previousMousePosition = {
     x: 0,
@@ -49,11 +50,12 @@ function onMouseMove(event) {
             y: event.clientY - previousMousePosition.y
         };
 
+        // Yalnızca yatay ve dikey yönlere izin vermek için
         const deltaRotationQuaternion = new THREE.Quaternion()
             .setFromEuler(new THREE.Euler(
-                toRadians(deltaMove.y * 0.1),
-                toRadians(deltaMove.x * 0.1),
                 0,
+                toRadians(deltaMove.x * 0.1),
+                toRadians(deltaMove.y * 0.1),
                 'XYZ'
             ));
 
@@ -70,8 +72,9 @@ function onMouseUp(event) {
     isDragging = false;
 }
 
+// Radyanları dereceye dönüştürme fonksiyonu
 function toRadians(degrees) {
-    return degrees * Math.PI / 180;
+    return degrees * (Math.PI / 180);
 }
 
 function animate() {
