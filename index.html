@@ -395,8 +395,10 @@ window.onload = getServerStatus;
 		
 		<div class="container">
 
-    <a href="#" class="button button--piyo">
+    <a href="#" class="button button--piyo" onclick="openShopLink()" id="shopButton">
+	
         <div class="button__wrapper">
+		
             <span class="button__text" style="font-family: 'MinecraftBold', sans-serif; font-size: 25px; font-weight: bold; padding-left: -50px;">SHOP</span>
 
         </div>
@@ -696,7 +698,10 @@ Kurallara uyan her oyuncuya şimdiden teşekkürler. Vilonya'da kalbi iyilik iç
 	
 	
 	
-	
+	function openShopLink() {
+        var shopLink = "https://www.shopier.com/ShowProductNew/storefront.php?shop=schvilo&sid=RmtVUTZGNkxJbXBKTTgwZDBfLTFfIF8g";
+        window.open(shopLink, "_blank");
+    }
 	
 	
 	

@@ -452,3 +452,7 @@ button.addEventListener('click', function() {
         window.open("https://discord.com/channels/1033476561648767066/1229785429545324586", "_blank");
     });
 	
+	
+	
+	
+	

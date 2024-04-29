@@ -209,7 +209,7 @@ container.addEventListener("wheel", (e) => {
 // Yakınlaştırma metnini güncelle
 function updateZoomText(delta) {
     clearTimeout(timeoutId); // Önceki gizleme zamanlayıcısını iptal et
-    zoomTextElement.textContent = `${zoomLevel}x`;
+    zoomTextElement.textContent = `x${zoomLevel}`;
 
     // Metni 1 saniye sonra gizle
     timeoutId = setTimeout(() => {
@@ -924,13 +924,13 @@ const profileData = {
                 username: "Sümeyye",
                 starRating: 5,
                 commentText: "Tatil dönüşü uğradık, manzarası harika. 🙏 ",
-                avatarSrc: "avatars/Guest45.png" // User123 için avatar dosya yolu
+                avatarSrc: "avatars/sumeyyeavatar.png" // User123 için avatar dosya yolu
             },
             {
                 username: "ShaNexx",
                 starRating: 5,
                 commentText: "Hemen yanında park var, gayet temiz.",
-                avatarSrc: "avatars/User123.png" // Guest45 için avatar dosya yolu
+                avatarSrc: "avatars/shanexavatar.png" // Guest45 için avatar dosya yolu
             }
         ]
 
@@ -997,7 +997,7 @@ const profileData = {
                 username: "ShaNexx",
                 starRating: 5,
                 commentText: "Devletimiz sağolsun, kız arkadaşım ile ziyaret ettik ancak ilaç saatim gelince kendisi kayboldu.",
-                avatarSrc: "avatars/User123.png" // Guest45 için avatar dosya yolu
+                avatarSrc: "avatars/shanexavatar.png" // Guest45 için avatar dosya yolu
             }
         ]
 	},
@@ -1179,7 +1179,7 @@ const profileData = {
                 username: "Sümeyye",
                 starRating: 5,
                 commentText: "Harika bir tatil oldu.🤭 ",
-                avatarSrc: "avatars/Guest45.png" // User123 için avatar dosya yolu
+                avatarSrc: "avatars/sumeyyeavatar.png" // User123 için avatar dosya yolu
             },
            
         ]
