@@ -22,7 +22,7 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('canvasContainer').appendChild(renderer.domElement);
 
-   // Fare olaylarını dinleme
+    // Fare olaylarını dinleme
     document.addEventListener('mousedown', onMouseDown);
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
@@ -50,14 +50,16 @@ function onMouseMove(event) {
             y: event.clientY - previousMousePosition.y
         };
 
-        // Yatay ve dikey dönüşleri ayrı ayrı hesaplama
+        // Dikey hareketi kontrol et
         const rotationX = toRadians(deltaMove.y * 0.1); // Dikey hareket
-        const rotationY = toRadians(deltaMove.x * 0.1); // Yatay hareket
+
+        // Yatay dönüşü engelle
+        const rotationY = 0; // Yatay hareket sıfırlandı
 
         // Kameranın dikey dönüş açısını sınırla (-90 ile 90 derece arası)
         camera.rotation.x = THREE.MathUtils.clamp(camera.rotation.x + rotationX, -Math.PI / 2, Math.PI / 2);
 
-        // Yatay dönüşü doğrudan uygula
+        // Yatay dönüşü doğrudan uygula (sıfırlandı)
         camera.rotation.y += rotationY;
 
         previousMousePosition = {

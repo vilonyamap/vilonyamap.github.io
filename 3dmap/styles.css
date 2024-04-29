@@ -184,6 +184,9 @@ body, html {
 .modal-container .modal-title {
     position: relative;
     top: 40px; /* Başlığı aşağı kaydırma mesafesi */
+	font-family: 'MinecraftRegular', sans-serif; /* MinecraftRegular fontunu başlıkta kullan */
+    font-weight: bold; /* Ekstra kalın yazı stilini belirtmek için */
+    font-size: 24px; /* Font büyüklüğünü belirleyin */
 }
 
 .info-text {
@@ -240,9 +243,7 @@ body, html {
 }
 
 .modal-title {
-    font-family: 'MinecraftRegular', sans-serif; /* MinecraftRegular fontunu başlıkta kullan */
-    font-weight: bold; /* Ekstra kalın yazı stilini belirtmek için */
-    font-size: 24px; /* Font büyüklüğünü belirleyin */
+    
 }
 
 
