@@ -215,11 +215,11 @@ body, html {
 .custom-test-button {
     font-family: 'MinecraftRegular', sans-serif;
     font-size: 16px;
-    color: #00f665;; /* Metin rengi */
+    color: #ffffff;; /* Metin rengi */
     display: inline-block; /* Metni yan yana getirmek için */
     padding: 10px 20px; /* Buton içerisindeki boşluklar */
     background-color: black; /* Arkaplan rengi */
-   
+    text-shadow: 2px 5px 2px black; /* Metnin altında siyah gölge */
 	
 
 }
@@ -229,11 +229,11 @@ body, html {
 	
 	font-family: 'MinecraftRegular', sans-serif;
     font-size: 16px;
-    color: white; /* Metin rengi */
+    color: #3eff69; /* Metin rengi */
     display: inline-block; /* Metni yan yana getirmek için */
     padding: 10px 20px; /* Buton içerisindeki boşluklar */
     background-color: black; /* Arkaplan rengi */
-    text-shadow: 2px 5px 2px black; /* Metnin altında siyah gölge */
+   
 	
 
 .info-text {

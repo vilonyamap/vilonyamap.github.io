@@ -538,67 +538,74 @@ document.head.appendChild(customButtonStyle);
 modalContainer.appendChild(testButton);
 
 
-// 360 derece butonunu oluşturma ve modal içine ekleme
-const degree360Button = document.createElement("button");
-degree360Button.textContent = "Street View";
 
-// Butona CSS sınıfı ekleme
-degree360Button.classList.add("custom-360-button");
 
-// 360 derece butonuna özel CSS stilleri eklemek için <style> elementi oluşturma
-const custom360ButtonStyle = document.createElement("style");
-custom360ButtonStyle.textContent = `
-.custom-360-button {
-    background-image: url('button72minik.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    width: 110px;
-    height: 45px;
-    position: relative;
-    top: -29.7px;
-    left: 120px;
-    padding: 5px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s ease; /* Hover efekti için dönüşüm geçişi */
-}
 
-.custom-360-button:hover {
-    background-image: url('button72minikhover.png');
-}
-`;
+if (profileName === "shanexx") {
+    // 360 derece butonunu oluşturma
+    const degree360Button = document.createElement("button");
+    degree360Button.textContent = "Street View";
+    degree360Button.classList.add("custom-360-button");
 
-// Oluşturulan stil elementini <head> içine ekleme
-document.head.appendChild(custom360ButtonStyle);
-
-// Modal container'a 360 derece butonunu ekleme
-modalContainer.appendChild(degree360Button);
-
-// Buton olay işleyicisi
-degree360Button.addEventListener("click", function() {
-    // Butona tıklandığında ilgili profili temsil eden 360 derece görüntüyü aç
-    const profileName = "ada"; // Örnek olarak "ada" profilini seçtik, istediğiniz profili buradan alabilirsiniz
-    const profile = profileData[profileName];
-
-    // 360 derece resim URL'si
-    const degree360Url = profile.images[0]; // İlk resmi kullanarak örnek aldık, istediğiniz resmi seçebilirsiniz
-
-    if (degree360Url) {
-        // Yeni sekme açma işlemi
-        const newWindow = window.open("360/index.html", "_blank");
-        if (newWindow) {
-            newWindow.onload = function() {
-                // Yeni sekmede 360 derece görüntüyü göster
-                newWindow.document.querySelector("#360image").src = degree360Url;
-            };
-        } else {
-            alert("Yeni pencere açılamadı. Lütfen tarayıcı ayarlarını kontrol edin.");
+    // 360 derece butonuna özel CSS stillerini ekleme
+    const custom360ButtonStyle = document.createElement("style");
+    custom360ButtonStyle.textContent = `
+        .custom-360-button {
+            background-image: url('button72minik.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: transparent;
+            width: 110px;
+            height: 45px;
+            position: relative;
+            top: -29.7px;
+            left: 120px;
+            padding: 5px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
         }
-    } else {
-        alert("Profil için 360 derece resim yolu bulunamadı.");
-    }
-});
+
+        .custom-360-button:hover {
+            background-image: url('button72minikhover.png');
+        }
+    `;
+
+    // Oluşturulan stil elementini <head> içine ekleme
+    document.head.appendChild(custom360ButtonStyle);
+
+    // Modal container'a 360 derece butonunu ekleme
+    modalContainer.appendChild(degree360Button);
+
+    // Buton olay işleyicisi
+    degree360Button.addEventListener("click", function() {
+        const degree360Url = profile.images[0]; // Profilin 360 derece resim URL'sini al
+
+        if (degree360Url) {
+            // Yeni sekme açma işlemi
+            const newWindow = window.open("360/index.html", "_blank");
+            if (newWindow) {
+                newWindow.onload = function() {
+                    // Yeni sekmede 360 derece görüntüyü göster
+                    newWindow.document.querySelector("#360image").src = degree360Url;
+                };
+            } else {
+                alert("Yeni pencere açılamadı. Lütfen tarayıcı ayarlarını kontrol edin.");
+            }
+        } else {
+            alert("Profil için 360 derece resim yolu bulunamadı.");
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -635,7 +642,7 @@ function createCloseButton(modalOverlay) {
     closeButton.style.width = "55px"; // Buton genişliği
     closeButton.style.height = "45px"; // Buton yüksekliği
     closeButton.style.position = "relative";
-    closeButton.style.top = "-90px"; // Profil başlığının üzerinde pozisyon
+    closeButton.style.top = "-55px"; // Profil başlığının üzerinde pozisyon
     closeButton.style.left = "-10px"; // Profil başlığının solunda pozisyon
     closeButton.style.padding = "15px"; // Buton içeriğinden kenar boşluğu
     closeButton.style.border = "none"; // Butonun kenarlığını kaldır
@@ -926,6 +933,7 @@ const profileData = {
                 avatarSrc: "avatars/User123.png" // Guest45 için avatar dosya yolu
             }
         ]
+
     },
     // Diğer profiller buraya eklenebilir
 	
