@@ -7,7 +7,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f3f3f3;
+    
 }
 
 #container {
@@ -36,43 +36,222 @@ body, html {
 
 /* Stil dosyası (style.css) */
 
-/* Pencere başlığı */
-.title-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+/* Stil dosyası (style.css) */
+
+#container {
+    position: relative;
+    width: 1880px;
+    height: 900px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-top: -90px;
 }
 
-/* Pencere kapatma düğmesi */
-.close-button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    color: #999;
-}
-
-/* İframe konteynırı */
-.iframe-container {
-    position: absolute; /* position: fixed; yerine kullanın */
-    bottom: 10%; /* Yukarıdan 10% mesafede başlayacak şekilde ayarlayın */
-    left: 110%;
+#draggable {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 800px;
-    height: 800px;
+    pointer-events: none;
 }
 
-
-/* Tıklanılabilir alanlarda fare imleci el işareti olarak görünsün */
 .clickable-profile {
     cursor: pointer;
 }
+/* Overlay Stili */
+/* Modal overlay stilini güncelle */
+.modal-overlay {
+    position: absolute;
+     top: -10%; /* Modal pencereyi yukarıda %10 oranında konumlandır */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-start; /* Sol tarafa hizalama */
+    align-items: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease; /* Arka plan rengi geçiş efekti */
+	
+}
+
+/* Genişletilmiş durumu için stil */
+.modal-container {
+    width: 40%; /* Varsayılan genişlik */
+    max-width: 1200px;
+    background-color: white;
+    padding: 140px; /* Padding değerini azaltın */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* İçeriği sola doğru hizala */
+    justify-content: flex-start; /* İçeriği yukarıda hizala */
+    overflow: hidden;
+    transition: width 0.5s ease; /* Genişleme animasyonu */
+    right: 200%; /* Başlangıçta sağa doğru kaydırma */
+    padding-left: 8%; /* İçeriği yüzde bazında sola kaydır */
+    top: 20px; /* Pencereyi yukarıda 20px kaydır */
+}
 
 
+/* Genişletilmiş durumu için stil */
+.modal-container.expanded {
+    width: calc(100% - 100px); /* Sağa doğru genişletme */
+    transition: width 0.5s ease; /* Genişleme animasyonu */
+    right: 0; /* Sağa doğru kaydırma */
+    overflow-x: hidden; /* Yatay kaydırmayı gizle */
+	top: 20px; /* Pencereyi genişlediğinde yukarıda 20px kaydır */
+}
+
+
+
+/* Küçük resimlerin stilini belirleme */
+.small-image {
+    width: 180px; /* Genişlik */
+    height: 180px; /* Yükseklik */
+    object-fit: cover; /* Resim içeriğinin sığdırılma şekli */
+    border-radius: 8px; /* Köşe yuvarlama */
+    border: 2px solid #ccc; /* Çerçeve rengi ve kalınlığı */
+    margin: 5px; /* Kenar boşluğu */
+    cursor: pointer; /* İmleç tipi değiştirme */
+    transition: transform 0.3s ease; /* Dönüşüm animasyonu */
+    margin-top: -110px; /* Resim üst boşluğu azaltıldı */
+}
+
+/* Yorum container'ı */
+.comment {
+    display: flex;
+    align-items: flex-start; /* Dikey hizalama, üst kısma hizala */
+    margin-bottom: 20px; /* Yorumlar arası boşluk */
+}
+
+/* Avatar resmi */
+.avatar {
+    width: 40px; /* Avatar resmi genişliği */
+    height: 40px; /* Avatar resmi yüksekliği */
+    margin-right: 10px; /* Avatar ile metin arasındaki boşluk */
+    border-radius: 50%; /* Yuvarlatılmış köşeler */
+}
+
+/* Etiketler (Kullanıcı ve Yorum) */
+.user-label,
+.comment-label {
+    font-weight: bold; /* Kalın font */
+    display: block; /* Etiketleri blok element olarak ayarla */
+}
+
+/* Kullanıcı adı ve Yorum içeriği */
+.comment-content p {
+    margin: 0; /* Paragraf etiketlerinin boşluklarını sıfırla */
+}
+
+/* Resim container'ı hizalamak için stil */
+.image-container {
+    display: flex;
+    flex-wrap: nowrap; /* Elemanlar bir satıra sığmazsa alt satıra geçmesini engeller */
+    justify-content: flex-start; /* Elemanları sola hizalar */
+    align-items: flex-start; /* Elemanları üstten başlar */
+    margin-top: 90px; /* Küçük resimlerin 90 piksel yukarı kaydırılması */
+}
+
+/* Başlık metnini yukarı kaydırmak için stil */
+.modal-container h2 {
+    margin-top: -70px; /* Başlık metnini yukarı kaydırmak için negatif bir margin değeri kullanabilirsiniz */
+    font-size: 34px; /* Başlık metni font boyutu */
+    font-weight: bold; /* Başlık metni kalın font yapma */
+}
+
+.large-image-container {
+    width: 100%; /* Genişleyen alanın genişliği kadar */
+    max-height: 80vh; /* Maksimum yükseklik ayarı (örn. pencerenin yüzde 80'i kadar) */
+    overflow: auto; /* Taşma durumunda kaydırma çubuğu ekleyin */
+    text-align: center; /* İçeriği ortala */
+    padding: 20px; /* Kenar boşluğu */
+    box-sizing: border-box; /* Kenar boşluğu dahil olacak şekilde boyut ayarı */
+}
+.large-image {
+    max-width: 100%; /* Resmi içeriğin genişliğine sığacak şekilde ayarlayın */
+    max-height: 100%; /* Resmi içeriğin yüksekliğine sığacak şekilde ayarlayın */
+    float: right; /* Resmi sağ tarafa kaydır */
+    margin-left: 20px; /* Sol kenar boşluğu */
+}
+
+.modal-container .modal-title {
+    position: relative;
+    top: 40px; /* Başlığı aşağı kaydırma mesafesi */
+}
+
+.info-text {
+    /* Modal genişlediğinde uygulanacak stil */
+    max-width: 500px; /* Örnek geniş değer */
+	white-space: pre-wrap; /* Metni orijinal biçimde tutar, gerektiğinde satırları bölerek yerleştirir */
+
+}
+
+.info-text-closed {
+    /* Modal kapalıyken uygulanacak stil */
+    max-width: 50px; /* Örnek daha dar değer */
+	
+}
+
+@font-face {
+    font-family: 'MinecraftRegular';
+    src: url('MinecraftRegular-Bmg3.otf') format('opentype'); /* Font dosyasının yolunu belirtin */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.custom-test-button {
+    font-family: 'MinecraftRegular', sans-serif;
+    font-size: 16px;
+    color: #00f665;; /* Metin rengi */
+    display: inline-block; /* Metni yan yana getirmek için */
+    padding: 10px 20px; /* Buton içerisindeki boşluklar */
+    background-color: black; /* Arkaplan rengi */
+   
+	
+
+}
+
+
+.custom-360-button {
+	
+	font-family: 'MinecraftRegular', sans-serif;
+    font-size: 16px;
+    color: white; /* Metin rengi */
+    display: inline-block; /* Metni yan yana getirmek için */
+    padding: 10px 20px; /* Buton içerisindeki boşluklar */
+    background-color: black; /* Arkaplan rengi */
+    text-shadow: 2px 5px 2px black; /* Metnin altında siyah gölge */
+	
+
+.info-text {
+    font-family: 'MinecraftRegular', sans-serif;
+    color: black;
+   
+    /* Diğer stiller burada */
+}
+
+.modal-title {
+    font-family: 'MinecraftRegular', sans-serif; /* MinecraftRegular fontunu başlıkta kullan */
+    font-weight: bold; /* Ekstra kalın yazı stilini belirtmek için */
+    font-size: 24px; /* Font büyüklüğünü belirleyin */
+}
+
+
+
+
+.zoom-text {
+     font-family: 'Minecraft', sans-serif; /* Minecraft fontunu kullan */
+	 
+
+}
+
+.comments-container {
+    width: 500px; /* Yorum kutusunun genişliği */
+    height: auto; /* Yorum kutusunun yüksekliğini otomatik olarak ayarla */
+    overflow-wrap: break-word; /* Uzun kelimeleri kelimeler üzerinde böl */
+}

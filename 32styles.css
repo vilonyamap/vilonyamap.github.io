@@ -1117,7 +1117,7 @@ input:checked + .slider:before {
 
 @font-face {
     font-family: 'MinecraftBold';
-    src: url('font/MinecraftBold-nMK1.otf') format('opentype');
+    src: url('fonts/MinecraftBold-nMK1.otf') format('opentype');
 }
 
 #yamanotlari:active {
@@ -1169,7 +1169,7 @@ input:checked + .slider:before {
 
 @font-face {
     font-family: 'MinecraftBold';
-    src: url('font/MinecraftBold-nMK1.otf') format('opentype');
+    src: url('fonts/MinecraftBold-nMK1.otf') format('opentype');
 }
 
 #duyurular:active {
@@ -1244,7 +1244,7 @@ input:checked + .slider:before {
 
 @font-face {
     font-family: 'MinecraftBold';
-    src: url('font/MinecraftBold-nMK1.otf') format('opentype');
+    src: url('fonts/MinecraftBold-nMK1.otf') format('opentype');
 }
 
 #sabitButon:active {
@@ -1831,4 +1831,25 @@ f8cfc9
 .juke-box2,
 .juke-box3 {
     display: none;
+}
+
+
+/* Stil dosyası (style.css) */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.play-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 9999; /* Diğer elementlerin üstünde olması için */
 }

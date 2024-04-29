@@ -11,7 +11,7 @@ function loadResourcesByScreenWidth() {
     var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     // Mobil eşiği belirle (örneğin, 768 piksel)
-    var mobileThreshold = 768;
+    var mobileThreshold = 1200;
 
     // Dosya URL'leri
     var cssFileURL, htmlFileURL;
@@ -629,7 +629,14 @@ Kurallara uyan her oyuncuya şimdiden teşekkürler. Vilonya'da kalbi iyilik iç
 <footer>
 
 
+ <button class="play-button" onclick="redirectToYouTube()">Bu sitenin ilham kaynağı nedir?</button>
 
+    <script>
+        function redirectToYouTube() {
+            // Yeni sekmede YouTube videosunu aç
+            window.open('https://youtu.be/9AnaeiJSSk4', '_blank');
+        }
+    </script>
 
 
 <div class="switch-container">
