@@ -404,6 +404,7 @@ infoTextElement.style.border = "2px solid black"; // Çerçeve rengini ve kalın
 infoTextElement.style.borderRadius = "10px"; // Çerçeve ovalleşme yarıçapını ayarla
 infoTextElement.style.padding = "10px"; // İçeriği çerçeveden ayırma
 
+
 // Sayfaya eklemek için kullanabileceğiniz örnek:
 document.body.appendChild(infoTextElement); // Veya istediğiniz bir başka elemente ekleyebilirsiniz
     

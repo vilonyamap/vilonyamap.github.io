@@ -187,6 +187,8 @@ body, html {
     /* Modal genişlediğinde uygulanacak stil */
     max-width: 500px; /* Örnek geniş değer */
 	white-space: pre-wrap; /* Metni orijinal biçimde tutar, gerektiğinde satırları bölerek yerleştirir */
+	font-family: 'MinecraftRegular', sans-serif;
+    color: black;
 
 }
 
@@ -229,8 +231,7 @@ body, html {
 	
 
 .info-text {
-    font-family: 'MinecraftRegular', sans-serif;
-    color: black;
+
    
     /* Diğer stiller burada */
 }
