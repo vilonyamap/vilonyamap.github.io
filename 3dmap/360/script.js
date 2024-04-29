@@ -3,14 +3,14 @@ let sphereMesh;
 
 function init() {
     // Kamera oluşturma
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
-    camera.position.set(0, 0, 2); // Kamerayı uzaklaştırarak görüntüyü daha küçük yapar
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 0, 0.1); // Kamerayı daha yakın bir konuma getir
 
     // Sahne oluşturma
     scene = new THREE.Scene();
 
     // Sphere oluşturma
-    const geometry = new THREE.SphereGeometry(1000, 60, 40);
+    const geometry = new THREE.SphereGeometry(500, 60, 40);
     geometry.scale(-1, 1, 1); // Sphere'ü içe doğru döndürme
     const texture = new THREE.TextureLoader().load('cami360.png'); // 360 derece görüntünün yüklenmesi
     const material = new THREE.MeshBasicMaterial({ map: texture });
@@ -50,16 +50,21 @@ function onMouseMove(event) {
             y: event.clientY - previousMousePosition.y
         };
 
-        // Yalnızca yatay ve dikey yönlere izin vermek için
-        const deltaRotationQuaternion = new THREE.Quaternion()
-            .setFromEuler(new THREE.Euler(
-                0,
-                toRadians(deltaMove.x * 0.1),
-                toRadians(deltaMove.y * 0.1),
-                'XYZ'
-            ));
+        // Kameranın yatay ve dikey dönüşlerini sınırla
+        const rotationX = toRadians(deltaMove.y * 0.1); // Dikey hareket
+        const rotationY = toRadians(deltaMove.x * 0.1); // Yatay hareket
 
-        sphereMesh.quaternion.multiplyQuaternions(deltaRotationQuaternion, sphereMesh.quaternion);
+        // Kameranın sınırları
+        const limitAngleX = Math.PI / 2; // En fazla yukarı/aşağı bakış açısı
+        const limitAngleY = Math.PI * 2; // Tam tur yatay bakış açısı
+
+        // Yeni rotasyon açılarını hesapla
+        const newRotationX = THREE.MathUtils.clamp(camera.rotation.x + rotationX, -limitAngleX, limitAngleX);
+        const newRotationY = camera.rotation.y + rotationY;
+
+        // Kameranın açılarını güncelle
+        camera.rotation.x = newRotationX;
+        camera.rotation.y = newRotationY;
 
         previousMousePosition = {
             x: event.clientX,
