@@ -4,25 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive 360 Degree View</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        #canvasContainer {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
-        }
-    </style>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body>
-    <div id="canvasContainer"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/three@0.131.2/build/three.min.js"></script>
-    <script src="script.js"></script>
+    <a-scene>
+        <!-- 360 derece görüntü için a-sky entitesi -->
+        <a-sky src="cami360.png" rotation="0 0 0"></a-sky>
+    </a-scene>
 </body>
 </html>
