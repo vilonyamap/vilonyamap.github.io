@@ -107,6 +107,25 @@ window.addEventListener('load', () => {
 
 
 
+// Fonksiyonlar burada tanımlanacak
+
+function openModal() {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    modalOverlay.style.display = 'flex';
+}
+
+function closeModal() {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    modalOverlay.style.display = 'none';
+}
+
+// Sayfa tamamen yüklendiğinde çalışacak kod
+window.onload = function() {
+    // Yükleme ekranını gizle
+    document.getElementById('loadingScreen').style.display = 'none';
+    // Ana içeriği göster
+    document.getElementById('container').style.display = 'block';
+};
 
 
 

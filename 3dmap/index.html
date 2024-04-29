@@ -5,12 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SVG Harita</title>
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Yükleme ekranı için stil */
+        #loadingScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
+            z-index: 9999; /* Diğer içeriklerin üstünde göster */
+        }
+
+        #loadingImage {
+            width: 100px; /* Yüklenme animasyonu boyutunu ayarlayabilirsiniz */
+            height: auto;
+        }
+    </style>
 </head>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 <body>
-    <div id="container">
+    <!-- Yükleme ekranı -->
+    <div id="loadingScreen">
+        <img id="loadingImage" src="loading.png" alt="Loading..." style="width: 200px; height: 200px;">
+    </div>
+
+    <!-- Ana içerik (3D harita) -->
+    <div id="container" style="display: none;">
         <img id="draggable" src="3DMapExport8k.png" alt="3D Map">
     </div>
 
@@ -29,8 +56,14 @@
         </div>
     </div>
 
-
     <script>
+        // Resim yükleme durumunu takip etmek için event listener ekleyin
+        document.getElementById('draggable').addEventListener('load', function() {
+            // Resim tamamen yüklendiğinde yükleme ekranını kaldırın, ana içeriği gösterin
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('container').style.display = 'block';
+        });
+
         function openModal() {
             const modalOverlay = document.querySelector('.modal-overlay');
             modalOverlay.style.display = 'flex';
@@ -40,8 +73,6 @@
             const modalOverlay = document.querySelector('.modal-overlay');
             modalOverlay.style.display = 'none';
         }
-
-
     </script>
 </body>
 </html>

@@ -50,17 +50,15 @@ function onMouseMove(event) {
             y: event.clientY - previousMousePosition.y
         };
 
-        // Yatay ve dikey dönüşleri tek bir dönüş olarak hesaplama
-        const rotation = toRadians(Math.sqrt(deltaMove.x * deltaMove.x + deltaMove.y * deltaMove.y) * 0.1);
-
-        // Yatay dönüş açısını hesaplama
-        const rotationY = Math.atan2(deltaMove.y, deltaMove.x);
+        // Yatay ve dikey dönüşleri ayrı ayrı hesaplama
+        const rotationX = toRadians(deltaMove.y * 0.1); // Dikey hareket
+        const rotationY = toRadians(deltaMove.x * 0.1); // Yatay hareket
 
         // Kameranın dikey dönüş açısını sınırla (-90 ile 90 derece arası)
-        camera.rotation.x = THREE.MathUtils.clamp(camera.rotation.x + rotation * Math.sin(rotationY), -Math.PI / 2, Math.PI / 2);
+        camera.rotation.x = THREE.MathUtils.clamp(camera.rotation.x + rotationX, -Math.PI / 2, Math.PI / 2);
 
         // Yatay dönüşü doğrudan uygula
-        camera.rotation.y += rotation * Math.cos(rotationY);
+        camera.rotation.y += rotationY;
 
         previousMousePosition = {
             x: event.clientX,

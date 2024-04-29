@@ -145,6 +145,9 @@ body, html {
 /* Kullanıcı adı ve Yorum içeriği */
 .comment-content p {
     margin: 0; /* Paragraf etiketlerinin boşluklarını sıfırla */
+	width: 500px; /* Yorum kutusunun genişliği */
+    height: auto; /* Yorum kutusunun yüksekliğini otomatik olarak ayarla */
+    overflow-wrap: break-word; /* Uzun kelimeleri kelimeler üzerinde böl */
 }
 
 /* Resim container'ı hizalamak için stil */
@@ -252,7 +255,5 @@ body, html {
 }
 
 .comments-container {
-    width: 500px; /* Yorum kutusunun genişliği */
-    height: auto; /* Yorum kutusunun yüksekliğini otomatik olarak ayarla */
-    overflow-wrap: break-word; /* Uzun kelimeleri kelimeler üzerinde böl */
+  
 }
