@@ -535,10 +535,13 @@ custom360ButtonStyle.textContent = `
     background-color: transparent;
     width: 110px;
     height: 45px;
+    position: relative;
+    top: -29.7px;
+    left: 120px;
     padding: 5px;
     border: none;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease; /* Hover efekti için dönüşüm geçişi */
 }
 
 .custom-360-button:hover {
