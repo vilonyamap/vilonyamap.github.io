@@ -642,7 +642,7 @@ function createCloseButton(modalOverlay) {
     closeButton.style.width = "55px"; // Buton genişliği
     closeButton.style.height = "45px"; // Buton yüksekliği
     closeButton.style.position = "relative";
-    closeButton.style.top = "-55px"; // Profil başlığının üzerinde pozisyon
+    closeButton.style.top = "-60px"; // Profil başlığının üzerinde pozisyon
     closeButton.style.left = "-10px"; // Profil başlığının solunda pozisyon
     closeButton.style.padding = "15px"; // Buton içeriğinden kenar boşluğu
     closeButton.style.border = "none"; // Butonun kenarlığını kaldır

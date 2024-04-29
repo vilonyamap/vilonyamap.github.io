@@ -14,45 +14,45 @@
 
 <script>
 // Kullanıcının ekran genişliğine göre CSS dosyasını yükleyen fonksiyon
-// Kullanıcının ekran genişliğine göre CSS ve HTML dosyalarını yükleyen fonksiyon
+
 function loadResourcesByScreenWidth() {
     // Ekran genişliği
     var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-    // Mobil eşiği belirle (örneğin, 768 piksel)
+   
     var mobileThreshold = 1200;
 
-    // Dosya URL'leri
+    
     var cssFileURL, htmlFileURL;
 
-    // Ekran genişliğine göre hangi dosyaların yükleneceğini belirle
+    
     if (screenWidth < mobileThreshold) {
-        cssFileURL = "styles.css"; // Mobil eşiğin altında standart CSS dosyası
-        htmlFileURL = "mobileindex.html"; // Mobil eşiğin altında HTML dosyası
+        cssFileURL = "styles.css"; 
+        htmlFileURL = "mobileindex.html"; 
     } else if (screenWidth >= 3000) {
-        cssFileURL = "32styles.css"; // Ekran çözünürlüğü 3000 ve üstündeyse özel CSS dosyası
+        cssFileURL = "32styles.css"; 
     } else {
-        cssFileURL = "styles.css"; // Varsayılan standart CSS dosyası
+        cssFileURL = "styles.css"; 
     }
 
-    // Önceden yüklenmiş CSS dosyasını bulup kaldır
+    
     var existingCSS = document.querySelector('link[href*="styles.css"]');
     if (existingCSS) {
         existingCSS.remove();
         console.log("Debug: CSS dosyası kaldırıldı.");
     }
 
-    // Yeni CSS dosyasını oluştur ve başlık bölümüne ekle
+    
     var linkElement = document.createElement("link");
     linkElement.rel = "stylesheet";
     linkElement.type = "text/css";
     linkElement.href = cssFileURL;
     document.head.appendChild(linkElement);
 
-    // Debug mesajını konsola yazdır
+    
     console.log("Debug: CSS dosyası yüklendi: " + cssFileURL);
 
-    // Mobil eşik altındaysa ve HTML dosyası tanımlıysa, HTML dosyasını yükle
+    
     if (screenWidth < mobileThreshold && htmlFileURL) {
         fetch(htmlFileURL)
             .then(response => response.text())
@@ -118,7 +118,7 @@ window.addEventListener('resize', loadResourcesByScreenWidth); // Ekran boyutu d
 
 <body>
 
-<!-- Diğer içerikler buraya gelecek -->
+<!-- Neye bahtın gülüm -->
 
 <div id="uyeOlButonAlani">
     <button id="uyeOlButon">Nasıl Üye Olurum?</button>
