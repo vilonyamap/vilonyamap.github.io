@@ -7,6 +7,7 @@ function init() {
     // Kamera oluşturma
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.set(0, 0, 1); // Kamera uzaklığı ayarla (z ekseni)
+    camera.rotation.reorder('YXZ'); // Kamera dönme düzenini ayarla
 
     // Sahne oluşturma
     scene = new THREE.Scene();
