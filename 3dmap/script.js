@@ -924,7 +924,7 @@ const profileData = {
                 username: "Sümeyye",
                 starRating: 5,
                 commentText: "Tatil dönüşü uğradık, manzarası harika. 🙏 ",
-                avatarSrc: "avatars/sumeyyeavatar.png" // User123 için avatar dosya yolu
+                avatarSrc: "avatars/Guest45.png" // User123 için avatar dosya yolu
             },
             {
                 username: "ShaNexx",
@@ -1179,7 +1179,7 @@ const profileData = {
                 username: "Sümeyye",
                 starRating: 5,
                 commentText: "Harika bir tatil oldu.🤭 ",
-                avatarSrc: "avatars/sumeyyeavatar.png" // User123 için avatar dosya yolu
+                avatarSrc: "avatars/Guest45.png" // User123 için avatar dosya yolu
             },
            
         ]
