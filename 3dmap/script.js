@@ -1181,6 +1181,12 @@ const profileData = {
                 commentText: "Harika bir tatil oldu.🤭 ",
                 avatarSrc: "avatars/Guest45.png" // User123 için avatar dosya yolu
             },
+			{
+                username: "Ankaralı Dul Memet",
+                starRating: 5,
+                commentText: "Saatlik kiralana biliyor olması güzel özellik. Sahibi gizliliye önem veriyor.",
+                avatarSrc: "avatars/memet.png" // Guest45 için avatar dosya yolu
+            }
            
         ]
     },
