@@ -1085,14 +1085,14 @@ const profileData = {
     },
 	
 		"hayvanbahcesi": {
-        title: "-899 689",
+        title: "Vilonya Lunapark & Mini Hayvanat Bahçesi",
 		fontSize: "28px", // Shanexx profilinin başlık font büyüklüğü
         images: [
-            "rehber/404.png",
-            "rehber/404.png",
-            "rehber/404.png"
+            "rehber/lunapark1.png",
+            "rehber/lunapark2.png",
+            "rehber/lunapark3.png"
         ],
-        infoText: "İçerisinde birçok canlıya ev sahipliği yapan -899 689, çocuklar başta olmak üzere her kesimden insanın ilgisini çekiyor.",
+        infoText: "İçerisinde birçok canlıya ev sahipliği yapan Vilonya Lunapark, çocuklar başta olmak üzere her kesimden insanın ilgisini çekiyor.",
         comments: [
             {
                 username: "Bilgemsu",
@@ -1105,14 +1105,14 @@ const profileData = {
     },
 	
 			"hipodrom": {
-        title: "-1252 685",
+        title: "Bilyboy Hipodromu",
 		fontSize: "28px", // Shanexx profilinin başlık font büyüklüğü
         images: [
-            "rehber/404.png",
-            "rehber/404.png",
-            "rehber/404.png"
+            "rehber/hipodrom1.png",
+            "rehber/hipodrom2.png",
+            "rehber/hipodrom3.png"
         ],
-        infoText: "-1252 685 Hipodromu, eğitim, alışveriş ve etkinlik alanlarına sahiptir. Ayrıca henüz isimlendirilmemiş atları ziyaret ederek onlara isim verebilirsiniz.",
+        infoText: "Bilyboy Hipodromu, eğitim, alışveriş ve etkinlik alanlarına sahiptir. Ayrıca henüz isimlendirilmemiş atları ziyaret ederek onlara isim verebilirsiniz.",
         comments: [
             {
                 username: "Şahin",
@@ -1120,7 +1120,12 @@ const profileData = {
                 commentText: "Gülbatur en sevdiğim at, güzel kızım benim. 🏇",
                 avatarSrc: "avatars/Guest45.png" // User123 için avatar dosya yolu
             },
-           
+            {
+                username: "Haru Urara *Yeni*",
+                starRating: 1,
+                commentText: "Belediye at yarışlarına izin vermemiş. I do not like it. 👎",
+                avatarSrc: "avatars/Guest45.png" // User123 için avatar dosya yolu
+            },
         ]
     },
 	
