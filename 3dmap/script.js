@@ -1174,9 +1174,9 @@ const profileData = {
         title: "Vilpanca Bungalov",
 		fontSize: "28px", // Shanexx profilinin başlık font büyüklüğü
         images: [
-            "rehber/404.png",
-            "rehber/404.png",
-            "rehber/404.png"
+            "rehber/bungalov1.png",
+            "rehber/bungalov2.png",
+            "rehber/bungalov3.png"
         ],
         infoText: "Önünden geçen harika akarsu manzarası ve gizliliğe önem veren kabinleriyle birlikte, Vilpanca Bungalov ziyaretçilerini bekliyor.",
         comments: [

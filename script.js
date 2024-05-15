@@ -374,6 +374,15 @@ const audioFiles = [
     'replik/op.mp3',
     'replik/takipci.mp3',
     'replik/terbiyesiz.mp3',
+	'replik/aboneol.mp3',
+	'replik/baybay.mp3',
+	'replik/ciz.mp3',
+	'replik/fenasin.mp3',
+	'replik/koyumuze.mp3',
+	'replik/megacigo.mp3',
+	'replik/neden.mp3',
+	'replik/ucube.mp3',
+	'replik/vicbacks.mp3',
     'replik/yayin.mp3'
 ];
 
